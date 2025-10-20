@@ -84,7 +84,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="logo.png" alt="EIREBSC Logo"> 
+                <img src="logo.png" alt="EIREBSC Logo"> <!-- Uses local logo.png from root directory -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -187,14 +187,14 @@
     </footer>
     <!-- WalletConnect Integration -->
     <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-    <script src="https://unpkg.com/web3@1.10.4/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/web3@1.10.4/dist/js/web3.min.js"></script>
     <script>
         async function connectWallet() {
             const provider = new WalletConnectProvider({
                 rpc: {
-                    56: "https://bsc-dataseed.binance.org/"  // BSC Mainnet RPC
+                    56: "https://bsc-dataseed.binance.org/" // BSC Mainnet RPC
                 },
-                chainId: 56  // BSC Mainnet Chain ID
+                chainId: 56 // BSC Mainnet Chain ID
             });
             try {
                 await provider.enable();
