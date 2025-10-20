@@ -3,69 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EIRE Token - Empower Irish Wealth</title>
+    <title>EIREBSC - Home</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (Binance uses a custom font; approximating with Inter for modern look) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles to Mimic Binance.com (Dark theme, yellow accents #F0B90B, clean layout) -->
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-        header { background-color: #006400; color: white; padding: 20px; text-align: center; }
-        .container { max-width: 1200px; margin: 20px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        section { margin-bottom: 40px; }
-        h1, h2 { color: #006400; }
-        ul { list-style-type: disc; padding-left: 20px; }
-        footer { background-color: #006400; color: white; text-align: center; padding: 10px; }
-        .logo { width: 100px; height: 100px; margin: 0 auto 20px; display: block; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #141414; /* Dark background like Binance */
+            color: #ffffff;
+        }
+        .navbar {
+            background-color: #1e2329; /* Dark navbar */
+            padding: 1rem 0;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #f0b90b !important; /* Yellow hover */
+        }
+        .btn-yellow {
+            background-color: #f0b90b;
+            color: #000000;
+            font-weight: 600;
+        }
+        .btn-yellow:hover {
+            background-color: #d9a107;
+            color: #000000;
+        }
+        .hero {
+            background: linear-gradient(to bottom, #1e2329, #141414);
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .section-title {
+            color: #f0b90b;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .card {
+            background-color: #1e2329;
+            border: none;
+            color: #ffffff;
+        }
+        footer {
+            background-color: #1e2329;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #f0b90b;
+        }
+        footer a:hover {
+            color: #ffffff;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>EIRE Token</h1>
-        <p>EIRE Coin</p>
-        <img src="https://jumpshare.com/s/ZS9c8ktVfC7rfoPFVLYZ" alt="EIRE Logo" class="logo"> <!-- Placeholder shamrock SVG logo -->
-    </header>
-    <div class="container">
-        <section id="introduction">
-            <h2>Introduction</h2>
-            <p>EIRE is a utility token on the Polygon network, designed to link cryptocurrency with Ireland's economy. Transaction taxes fund investments in the Irish Stock Exchange (ISEQ) and affordable housing projects, creating sustainable value for holders.</p>
-        </section>
-        <section id="tokenomics">
-            <h2>Tokenomics</h2>
-            <ul>
-                <li><strong>Total Supply</strong>: 1,000,000,000 EIRE (1B initial, reducing to 365M through quarterly burns starting Q3 2026).</li>
-                <li><strong>Tax on Transfers</strong>: 3% (2% to treasury for ISEQ/housing, 1% to liquidity, with 1% returnable after 365 days if holding).</li>
-                <li><strong>Burn Mechanism</strong>: Quarterly burns based on treasury profits in POL, sent to dead address until 365M supply.</li>
-                <li><strong>Decimals</strong>: 8 normally, switching to 2 near final supply.</li>
-            </ul>
-        </section>
-        <section id="features">
-            <h2>Key Features</h2>
-            <ul>
-                <li><strong>Staking & Dividends</strong>: Stake EIRE for 1+ year to earn POL dividends from contract balance.</li>
-                <li><strong>Reflections</strong>: 1% tax held for 365 days; claimable if holding, or re-minted if sold.</li>
-                <li><strong>Treasury Management</strong>: Funds ISEQ investments and housing.</li>
-                <li><strong>Security</strong>: Pausable, reentrancy-protected, with manual burn after investment lodgment.</li>
-            </ul>
-        </section>
-        <section id="roadmap">
-            <h2>Roadmap</h2>
-            <ul>
-                <li><strong>Q3 2026</strong>: Launch, DEX listing (QuickSwap), community building.</li>
-                <li><strong>Q1 2027</strong>: ISEQ integration, staking launch.</li>
-                <li><strong>Q2 2027</strong>: DAO governance, housing partnerships, first burns.</li>
-                <li><strong>Q3 2027+</strong>: Expand RWAs, CEX listings, continue burns to 365M supply.</li>
-            </ul>
-        </section>
-        <section id="contract">
-            <h2>Contract Details info@eire-coin.com    </h2>
-            <a href="https://polygonscan.com/address/0x8ef2f93b3c99050fdbd926d30e537997faf32ee0">0xeaD71E798472d6eb06FdD229E5fAffb199BE3928</a> (View on PolygonScan)<br>
-        </section>
-    </div>
+
+    <!-- Navbar (Same on all pages) -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://i.imgur.com/YourLogoID.png" alt="EIREBSC Logo"> <!-- Replace with direct Imgur link, e.g., https://i.imgur.com/8ICmoRI.png (download and extract direct URL from album) -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="whitepaper.html">Whitepaper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bscscan.com/token/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank">Contract</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://web3.binance.com/en/token/bsc/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank">Trade on Binance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:info@eire-coin.com">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>EIREBSC - Loyalty-Driven Token on BSC</h1>
+            <p class="lead">A self-sustaining ecosystem with 3% buy tax for treasury, liquidity, and staking rewards.</p>
+            <a href="https://web3.binance.com/en/token/bsc/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" class="btn btn-yellow btn-lg" target="_blank">Trade Now on Binance Web3</a>
+            <p class="mt-3"><a href="whitepaper.html" class="text-white">Read the Whitepaper</a></p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title text-center">Token Overview</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card p-4 text-center">
+                        <h5>3% Buy Tax</h5>
+                        <p>Funded from vault: 1% Treasury, 1% Liquidity, 1% Staking.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 text-center">
+                        <h5>365-Day Hold Lock</h5>
+                        <p>Forfeits reflections on early sells to reduce dumps.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 text-center">
+                        <h5>Investment Reinvestment</h5>
+                        <p>Treasury profits flow back to enhance token value.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Explanation Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title text-center">How the 3% Tax Works</h2>
+            <div class="card p-4">
+                <p>On buys, tax is from vault (buyer gets full tokens):</p>
+                <ul>
+                    <li>Treasury: Investments with profits reinvested.</li>
+                    <li>Liquidity: Builds pool stability.</li>
+                    <li>Staking: Vested rewards over 365 days.</li>
+                </ul>
+                <p>Sells: No tax, but early exit forfeits rewards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Returns Section -->
+    <section class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title text-center">Returns for Holders</h2>
+            <div class="card p-4">
+                <p>Passive rewards from staking, treasury growth, and liquidity stability. Hold long-term for full benefits.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same on all pages) -->
     <footer>
-        <p>&copy; 2025 EIRE Token. All rights reserved. | Contact: info@eire-coin.com | <a href="https://polygonscan.com/token/[Your Address]" style="color: white;">View on PolygonScan</a></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Contact: <a href="mailto:info@eire-coin.com">info@eire-coin.com</a></p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Contract: <a href="https://bscscan.com/token/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank">View on BscScan</a></p>
+                    <p>&copy; 2025 EIREBSC. Work in progress - Seeking partners.</p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-
