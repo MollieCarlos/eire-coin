@@ -1,210 +1,103 @@
-<!-- whitepaper.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EIREBSC - Whitepaper</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Éire Whitepaper - Generational Wealth in Crypto</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f0f2f5; }
-        .navbar { background-color: #001529; }
-        .navbar-brand img { height: 40px; }
-        .content { background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        footer { background-color: #001529; color: white; padding: 20px 0; text-align: center; }
-        .btn-primary { background-color: #1890ff; border-color: #1890ff; }
-        .btn-primary:hover { background-color: #40a9ff; border-color: #40a9ff; }
-        h1, h2, h3 { color: #001529; }
-        table { margin-bottom: 20px; }
-        ul { margin-bottom: 20px; }
+        body { margin: 0; font-family: 'Arial', sans-serif; background-color: #121212; color: #ffffff; line-height: 1.6; }
+        header { background-color: #1f1f1f; padding: 20px; text-align: center; border-bottom: 2px solid #00ff00; }
+        nav { background-color: #1f1f1f; padding: 10px; text-align: center; }
+        nav a { color: #00ff00; margin: 0 15px; text-decoration: none; font-weight: bold; }
+        nav a:hover { color: #ffffff; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #1f1f1f; border-radius: 8px; }
+        h1, h2, h3 { color: #00ff00; }
+        .hero { background-color: #282828; padding: 40px; text-align: center; border-radius: 8px; margin-bottom: 20px; }
+        .hero h1 { font-size: 2.5em; }
+        .section { margin-bottom: 40px; }
+        .feature-list { list-style-type: none; padding: 0; }
+        .feature-list li { background-color: #282828; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+        button { background-color: #00ff00; color: #121212; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        button:hover { background-color: #ffffff; color: #00ff00; }
+        footer { background-color: #1f1f1f; padding: 10px; text-align: center; border-top: 2px solid #00ff00; font-size: 0.8em; }
+        .transparent-metrics { background-color: #282828; padding: 20px; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #00ff00; padding: 10px; text-align: left; }
+        th { background-color: #1f1f1f; }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="https://i.imgur.com/8ICmoRI.png" alt="EIREBSC Logo">
-                EIREBSC
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="whitepaper.html">Whitepaper</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://bscscan.com/token/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank">Contract</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mailto:info@eire-coin.com">Contact</a></li>
-                </ul>
-            </div>
-        </div>
+    <header>
+        <h1>Éire Whitepaper</h1>
+        <p>Unlocking Generational Wealth Through Transparent Crypto Innovation</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="evt.html">ÉireVault (EVT)</a>
+        <a href="elg.html">ÉireLegacy (ELG)</a>
+        <a href="ehr.html">ÉireHorizon (EHR)</a>
+        <a href="eyr.html">ÉireYield (EYR)</a>
+        <a href="efl.html">ÉireFlow (EFL)</a>
+        <a href="child-savings.html">Child Savings</a>
+        <a href="whitepaper.html">Whitepaper</a>
     </nav>
 
-    <section class="container my-5">
-        <div class="content">
-            <h1>EIREBSC Whitepaper: A Comprehensive Guide to a Loyalty-Driven Token Ecosystem on Binance Smart Chain</h1>
-            
-            <h2>Executive Summary</h2>
-            <p>EIREBSC represents a pioneering approach to decentralized finance on the Binance Smart Chain (BSC), blending innovative tax mechanics with robust reward systems to create a token that prioritizes holder loyalty, ecosystem sustainability, and long-term value creation. With a capped supply of 1,000,000,000 tokens, EIREBSC employs a 3% buy tax—sourced from a strategically pre-funded vault—to seamlessly distribute resources across treasury investments, liquidity enhancement, and staking reflections. This model not only shields buyers from direct costs but also fosters a self-perpetuating cycle of growth, where every transaction contributes to the token's resilience and appeal.</p>
-            <p>In an era where short-term speculation often undermines DeFi projects, EIREBSC stands out by discouraging early exits through a 365-day reflection forfeiture on sells, while rewarding steadfast participants with vested staking benefits. The treasury's focus on prudent investments ensures that collected funds generate real-world returns, which are reinvested to bolster the token's utility, liquidity, and market position. As a project in its early stages, contract ownership remains active to allow for iterative improvements and partnerships. We are actively seeking collaborators with expertise to refine this vision—contact us at info@eire-coin.com to join the journey. View the verified contract on BscScan for complete transparency: <a href="https://bscscan.com/token/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank">EIREBSC Contract</a>.</p>
-            <p>By investing in EIREBSC, holders become part of a community-driven ecosystem where loyalty translates to tangible rewards, stability, and shared prosperity. This whitepaper delves into the mechanics, benefits, and strategic roadmap, demonstrating why EIREBSC is positioned for enduring success in the competitive DeFi landscape.</p>
-            
-            <h2>Token Overview</h2>
-            <p>EIREBSC is engineered as a multifaceted BEP-20 token that goes beyond simple value transfer, embedding mechanisms that align the interests of holders, the project team, and the broader ecosystem. At its foundation lies a commitment to fairness: no inflationary minting, no hidden fees, and a transparent on-chain structure verifiable at <a href="https://bscscan.com/token/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank">EIREBSC Contract on BscScan</a>.</p>
-            <p>Key specifications:</p>
-            <ul>
-                <li><strong>Total Supply</strong>: 1,000,000,000 tokens (fixed, non-mintable post-deployment).</li>
-                <li><strong>Decimals</strong>: Starts at 18, with a owner-controlled reduction mechanism (decrement by 2 every 60 days, minimum 2) to adapt to evolving market needs, such as simplifying large denominations for broader accessibility.</li>
-                <li><strong>Tax Structure</strong>: 3% on buys only, vault-funded to avoid burdening participants.</li>
-                <li><strong>Hold Incentives</strong>: 365-day vesting for reflections, with forfeiture on early sells to promote stability.</li>
-                <li><strong>Supporting Contracts</strong>: Integrated with a vault for tax sourcing, treasury for investment pools, liquidity manager for pool maintenance, and staking reflections for rewards.</li>
-            </ul>
-            <p>This architecture positions EIREBSC as an ideal entry point for investors seeking passive income in a low-risk, high-reward framework. Unlike volatile meme tokens, EIREBSC's design emphasizes utility through investments and reflections, making it a compelling choice for those building wealth over time.</p>
-            
-            <h2>Transaction Mechanics: A Deep Dive</h2>
-            <p>The smart contract employs precise logic to ensure every transaction contributes positively to the ecosystem. Below, we explore the intricate processes, with a particular focus on buys, where the token's innovative features shine brightest. All logic is executed on-chain, verifiable via the contract at <a href="https://bscscan.com/token/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank">EIREBSC Contract on BscScan</a>.</p>
-            
-            <h3>Buy Transactions: Step-by-Step Breakdown</h3>
-            <p>Buys are the lifeblood of EIREBSC's growth engine, transforming each purchase into a catalyst for ecosystem enhancement. Here's what happens in depth when a user buys tokens on PancakeSwap (or any compatible DEX):</p>
-            <ol>
-                <li><strong>Detection and Validation</strong>: The contract's `_transfer` function identifies the transaction as a buy by checking if the sender is the PancakeSwap pair address (set via `setPancakePair`) and the recipient is a valid user wallet. If the buyer is new (no prior `firstHoldTime`), the current block timestamp is recorded as their hold start date. This timestamp is crucial for future sell penalties and vesting calculations.</li>
-                <li><strong>Tax Calculation</strong>: A flat 3% tax is computed on the full transfer amount (e.g., for a 10,000 token buy, tax = 300 tokens). Importantly, this tax is <strong>not deducted from the buyer's amount</strong>—the buyer receives 100% of their purchased tokens. Instead, the tax is sourced from the pre-funded vault, ensuring seamless execution without impacting user experience.</li>
-                <li><strong>Vault Extraction</strong>: The main contract calls `extractForTax` on the vault (EIREBSC_Vault), which verifies the caller is the main contract and transfers the exact tax amount back to EIREBSC. This vault-funded model is a key innovation: It pre-allocates tokens (funded by the owner or community) to cover taxes, preventing supply inflation or buyer penalties. If the vault lacks funds, the buy reverts—encouraging proactive funding for sustainability.</li>
-                <li><strong>Tax Distribution</strong>: The extracted tax is divided equally into three portions (1% each of the original amount):
-                    <ul>
-                        <li><strong>1% to Treasury (EIREBSC_Treasury)</strong>: Transferred to the treasury contract, which invokes `receiveTax` to split the amount 50/50 between a dividend pool (for potential holder payouts) and a locked pool (for long-term reserves). This portion funds strategic investments—such as partnerships, marketing, or yield-generating opportunities—with all profits reinvested into EIREBSC to buy back tokens, burn supply, or enhance liquidity, directly boosting holder value.</li>
-                        <li><strong>1% to Liquidity Manager (EIREBSC_LiquidityManager)</strong>: Sent to this contract, which holds predefined swap paths (token to WBNB and vice versa) for future automated liquidity additions or swaps via the PancakeSwap router. This strengthens the trading pool, reducing slippage and improving market depth over time.</li>
-                        <li><strong>1% to Staking Reflections (EIREBSC_StakingReflections)</strong>: Allocated to the buyer via `vestForUser`, adding to their vested balance with a 365-day vesting period starting from their first hold. This creates passive income, as reflections accumulate from every buy across the network.</li>
-                    </ul>
-                </li>
-                <li><strong>Final Transfer and Event Emission</strong>: The full original amount is transferred to the buyer. Events are emitted for transparency (e.g., Transfer, TaxExtracted), logged on BscScan for auditing.</li>
-            </ol>
-            <p>This process ensures every buy not only acquires tokens but actively contributes to the token's health—funding investments, bolstering liquidity, and rewarding the community—all without cost to the participant. Over time, as volume increases, this creates a virtuous cycle: more buys lead to deeper liquidity and richer reflections, attracting more holders and driving sustainable appreciation.</p>
-            
-            <h3>Sell Transactions</h3>
-            <p>Sells are streamlined to maintain liquidity while protecting the ecosystem:</p>
-            <ul>
-                <li>No additional tax is applied.</li>
-                <li>The contract evaluates hold duration:</li>
-                <li><strong>Early Sell (Within 365 Days)</strong>: The transaction completes, but any unvested reflections are forfeited via `forfeit` in the staking contract, emitting a Forfeited event. This penalty discourages flippers without blocking exits.</li>
-                <li><strong>Mature Sell (After 365 Days)</strong>: Unrestricted sale with retention of all vested rewards.</li>
-            </ul>
-            <p>This anti-dump feature stabilizes price by reducing sell pressure, benefiting long-term holders through preserved value and continued reward accumulation.</p>
-            
-            <h2>Long-Term Mechanisms and Benefits</h2>
-            <p>EIREBSC's design extends beyond immediate transactions, incorporating mechanisms that compound value over months and years.</p>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Detailed Purpose</th>
-                        <th>Holder Benefits</th>
-                        <th>Ecosystem Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>365-Day Hold Lock</td>
-                        <td>Tracks initial purchase to enforce reflection vesting and early sell penalties.</td>
-                        <td>Maximizes rewards for committed holders; protects investments from market floods.</td>
-                        <td>Lowers volatility, fostering a mature community and steady price growth.</td>
-                    </tr>
-                    <tr>
-                        <td>Vault-Funded Tax</td>
-                        <td>Pre-allocates tokens in a dedicated contract for seamless tax coverage.</td>
-                        <td>Ensures buys are cost-free; reflections accrue without dilution.</td>
-                        <td>Enables scalable funding without minting, promoting deflationary tendencies as vault depletes through usage.</td>
-                    </tr>
-                    <tr>
-                        <td>Staking Reflections</td>
-                        <td>Vests 1% of buy taxes over 365 days, claimable post-period.</td>
-                        <td>Generates passive income (e.g., from network-wide buys); claimable via `claim` function.</td>
-                        <td>Builds loyalty, reducing circulating supply as holders stake long-term.</td>
-                    </tr>
-                    <tr>
-                        <td>Liquidity Allocation</td>
-                        <td>Routes 1% to manager with Pancake paths for automated adds/swaps.</td>
-                        <td>Improves trade efficiency and price stability, minimizing slippage on larger orders.</td>
-                        <td>Creates deeper pools, attracting institutional interest and enhancing token resilience against manipulation.</td>
-                    </tr>
-                    <tr>
-                        <td>Treasury Investments</td>
-                        <td>Divides 1% into dividend/locked pools for strategic use.</td>
-                        <td>Indirect returns via reinvested profits (e.g., buybacks, burns, partnerships).</td>
-                        <td>Funds expert collaborations and growth initiatives, ensuring the project's longevity and competitive edge.</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>In-Depth Holder Benefits</h3>
-            <p>Holders are the cornerstone of EIREBSC, enjoying a suite of advantages tailored for sustainable wealth building:</p>
-            <ul>
-                <li><strong>Passive Reflection Earnings</strong>: Every buy across the network contributes to your vested balance, creating compounding rewards. For instance, in a high-volume scenario (e.g., $1M daily trades), reflections could yield significant annual returns based on hold size.</li>
-                <li><strong>Anti-Dump Safeguards</strong>: The forfeiture on early sells acts as a natural barrier to volatility, preserving value for dedicated participants and potentially leading to price floors during market dips.</li>
-                <li><strong>Investment-Backed Growth</strong>: Treasury taxes enable professional investments (e.g., yield farming, partnerships), with profits funneled back—potentially funding airdrops, liquidity boosts, or token burns to increase scarcity and value.</li>
-            </ul>
-            
-            <h3>Ecosystem Advantages</h3>
-            <ul>
-                <li><strong>Organic Scalability</strong>: The vault system decouples tax from buyer costs, allowing unlimited growth without friction.</li>
-                <li><strong>Full Transparency</strong>: All operations are on-chain, auditable via BscScan, eliminating trust issues common in DeFi.</li>
-                <li><strong>Resilient Market Dynamics</strong>: By rewarding longevity, EIREBSC cultivates a stable holder base, reducing reliance on hype and positioning for organic adoption.</li>
-            </ul>
-            
-            <h2>Example Holder Timeline with In-Depth Scenarios</h2>
-            <p>To demonstrate real-world value, consider a holder purchasing 100,000 tokens at launch (assuming $0.00005 starting price, ~$5 investment):</p>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Action</th>
-                        <th>Detailed Outcome</th>
-                        <th>Potential Value Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Day 1</td>
-                        <td>Buy 100,000 tokens</td>
-                        <td>Full receipt; vault extracts 3,000 tokens tax (1,000 each to treasury, liquidity, staking). Your reflections vest at 1,000 tokens over 365 days. Hold timestamp set.</td>
-                        <td>Immediate ecosystem boost; your stake starts earning from future buys.</td>
-                    </tr>
-                    <tr>
-                        <td>Month 3</td>
-                        <td>Network volume grows (e.g., 1M tokens traded daily)</td>
-                        <td>Your vested reflections increase proportionally from buy taxes network-wide. Claim partial vested amount (~250 tokens) without penalty.</td>
-                        <td>Passive gain: ~$0.0125 value added (at starting price), compounding daily.</td>
-                    </tr>
-                    <tr>
-                        <td>Month 6</td>
-                        <td>Attempt early sell of 50,000 tokens</td>
-                        <td>Sale succeeds, but unvested reflections (e.g., 500 tokens) forfeited. Receive BNB proceeds.</td>
-                        <td>Penalty reinforces hold strategy; remaining stake continues vesting, protecting from dumps.</td>
-                    </tr>
-                    <tr>
-                        <td>Month 13</td>
-                        <td>Full sell after lock</td>
-                        <td>Retain all vested reflections (e.g., 1,000+ from network growth); full proceeds. Treasury investments may have appreciated price by 20–50%.</td>
-                        <td>Maximized returns: Potential $7.50+ from initial $5, plus reflections worth $0.05+.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>In high-adoption scenarios, reflections could yield 10–50% APY based on volume, with treasury reinvestments amplifying token price through buybacks.</p>
-            
-            <h2>The EIREBSC Value Proposition</h2>
-            <p>EIREBSC is more than a token—it's a gateway to a thriving, self-sustaining DeFi ecosystem where every participant benefits from aligned incentives. By leveraging vault-funded taxes for investments, vesting reflections for loyalty, and anti-dump measures for stability, EIREBSC offers unparalleled opportunities for passive wealth building. Ideal for long-term investors, community builders, and DeFi enthusiasts, this token transforms speculation into strategic participation on BSC.</p>
-            <p>We invite partnerships with seasoned experts to elevate this project. Reach out at <a href="mailto:info@eire-coin.com">info@eire-coin.com</a> for discussions.</p>
-            <p><em>Disclaimer: This whitepaper serves informational intents solely and is not financial guidance. Market risks apply; invest wisely.</em></p>
+    <div class="container">
+        <div class="hero">
+            <h1>Download or Read the Éire Whitepaper</h1>
+            <p>Our whitepaper details the ecosystem, tokens, child savings, taxes, and metrics in depth. As the world's first on-chain crypto generational wealth system, Éire sets a new standard for transparency and security.</p>
+            <button onclick="alert('Download Coming Soon')">Download PDF</button>
+            <button onclick="location.href='index.html'">Back to Home</button>
         </div>
-    </section>
+
+        <div class="section">
+            <h2>Executive Summary</h2>
+            <p>Éire is a Tron-based ecosystem with five tokens for wealth building. It features the world's first crypto child savings accounts, with parent management, tax advantages, and auto-glide paths.</p>
+        </div>
+
+        <div class="section">
+            <h2>Tokenomics</h2>
+            <p>500M total supply, 100M per token. 3% buy tax to treasury, 3% sell tax burned (50% minted back). Cross-ownership ensures resilience.</p>
+        </div>
+
+        <div class="section">
+            <h2>Child Savings Innovation</h2>
+            <p>World's first on-chain crypto junior savings. 90% stables at birth, declining to 55% at 18. Tax-deferred, 5% credit, $5,000 limit, 10% early penalty.</p>
+        </div>
+
+        <div class="section">
+            <h2>Yield & Borrowing</h2>
+            <p>8% APY via JustLend, 3x leverage borrowing, flash-loan proof with TWAP oracles.</p>
+        </div>
+
+        <div class="section">
+            <h2>Governance & Security</h2>
+            <p>Token-weighted voting, 3-day periods, quorum 10%. Reentrancy guards, cooldowns.</p>
+        </div>
+
+        <div class="transparent-metrics">
+            <h2>Key Metrics</h2>
+            <table>
+                <tr><th>Metric</th><th>Value</th></tr>
+                <tr><td>Total Supply (All Tokens)</td><td>500,000,000</td></tr>
+                <tr><td>Per Token Supply</td><td>100,000,000</td></tr>
+                <tr><td>Minimum Supply Floor</td><td>50,000,000 per token</td></tr>
+                <tr><td>Buy Tax</td><td>3% to treasury</td></tr>
+                <tr><td>Sell Tax</td><td>3% burned (50% minted back)</td></tr>
+                <tr><td>Cross-Ownership</td><td>5% of each token owned by others</td></tr>
+                <tr><td>Stablecoin Allocation (Child Savings)</td><td>90% at birth, decreasing to 55% at 18</td></tr>
+                <tr><td>Annual Contribution Limit (Child Savings)</td><td>$5,000</td></tr>
+                <tr><td>Tax Credit on Deposits</td><td>5%</td></tr>
+                <tr><td>Early Withdrawal Penalty</td><td>10%</td></tr>
+            </table>
+            <p>Full transparency: Taxes fund development; no hidden fees.</p>
+            <button onclick="alert('Connect Wallet Coming Soon')">Connect Wallet</button>
+        </div>
+    </div>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 EIREBSC. All rights reserved.</p>
-            <p>Contract: <a href="https://bscscan.com/token/0x6fc173ab6797c2de8b15d5670ff381b1eea66eec" target="_blank" class="text-white">View on BscScan</a> | Contact: <a href="mailto:info@eire-coin.com" class="text-white">info@eire-coin.com</a></p>
-        </div>
+        <p>&copy; 2025 Éire Crypto Ecosystem. All rights reserved. This is not financial advice. Consult tax professionals for local regulations.</p>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
