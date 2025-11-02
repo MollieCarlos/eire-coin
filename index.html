@@ -1,91 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éire Crypto Ecosystem - Generational Wealth Builders</title>
-    <style>
-        body { margin: 0; font-family: 'Arial', sans-serif; background-color: #121212; color: #ffffff; line-height: 1.6; }
-        header { background-color: #1f1f1f; padding: 20px; text-align: center; border-bottom: 2px solid #00ff00; }
-        nav { background-color: #1f1f1f; padding: 10px; text-align: center; }
-        nav a { color: #00ff00; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        nav a:hover { color: #ffffff; }
-        .container { max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #1f1f1f; border-radius: 8px; }
-        h1, h2, h3 { color: #00ff00; }
-        .hero { background-color: #282828; padding: 40px; text-align: center; border-radius: 8px; margin-bottom: 20px; }
-        .hero h1 { font-size: 2.5em; }
-        .section { margin-bottom: 40px; }
-        .feature-list { list-style-type: none; padding: 0; }
-        .feature-list li { background-color: #282828; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
-        button { background-color: #00ff00; color: #121212; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; }
-        button:hover { background-color: #ffffff; color: #00ff00; }
-        footer { background-color: #1f1f1f; padding: 10px; text-align: center; border-top: 2px solid #00ff00; font-size: 0.8em; }
-        .transparent-metrics { background-color: #282828; padding: 20px; border-radius: 8px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #00ff00; padding: 10px; text-align: left; }
-        th { background-color: #1f1f1f; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BSC Arbitrage Bot – Auto 10s Refresh</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+  <style>
+    body { font-family: Arial; background: #111; color: #0f0; padding: 20px; }
+    .bot { max-width: 600px; margin: 20px auto; padding: 20px; border: 2px solid #0f0; border-radius: 12px; }
+    button { width: 100%; padding: 14px; margin: 10px 0; font-size: 18px; background: #0a0; color: #000; border: none; border-radius: 8px; }
+    input { width: 100%; padding: 12px; margin: 10px 0; background: #222; color: #0f0; border: 1px solid #0f0; border-radius: 6px; }
+    .opp { background: #222; padding: 15px; border-radius: 8px; margin: 15px 0; }
+    .profit { font-weight: bold; color: #0f0; }
+    #status { margin: 15px 0; font-weight: bold; }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Éire Crypto Ecosystem</h1>
-        <p>Building Generational Wealth Through Innovative, Transparent Crypto Solutions</p>
-    </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="evt.html">ÉireVault (EVT)</a>
-        <a href="elg.html">ÉireLegacy (ELG)</a>
-        <a href="ehr.html">ÉireHorizon (EHR)</a>
-        <a href="eyr.html">ÉireYield (EYR)</a>
-        <a href="efl.html">ÉireFlow (EFL)</a>
-        <a href="child-savings.html">Child Savings</a>
-        <a href="whitepaper.html">Whitepaper</a>
-    </nav>
+<div class="bot">
+  <h2 style="text-align:center; margin:0 0 20px;">BSC Arbitrage Bot – Auto 10s Scan</h2>
 
-    <div class="container">
-        <div class="hero">
-            <h1>Welcome to Éire – The Future of Generational Wealth</h1>
-            <p>Éire is the world's first fully on-chain crypto ecosystem designed for long-term security and growth. Our suite of tokens empowers families to build lasting wealth, with groundbreaking child savings accounts that are secure, transparent, and optimized for the next generation.</p>
-            <button onclick="location.href='child-savings.html'">Discover Child Savings</button>
-            <button onclick="location.href='whitepaper.html'">Read Whitepaper</button>
-        </div>
+  <button id="connectBtn">Connect Any Wallet</button>
+  <div id="wallet" style="margin:12px 0; font-weight:bold;"></div>
 
-        <div class="section">
-            <h2>Our Tokens: Tailored for Every Stage of Wealth Building</h2>
-            <ul class="feature-list">
-                <li><strong>ÉireVault (EVT)</strong>: Secure, long-term holding for foundational wealth.</li>
-                <li><strong>ÉireLegacy (ELG)</strong>: Designed for generational wealth transfer.</li>
-                <li><strong>ÉireHorizon (EHR)</strong>: Future-focused investments for growth.</li>
-                <li><strong>ÉireYield (EYR)</strong>: Generate income over time with yields.</li>
-                <li><strong>ÉireFlow (EFL)</strong>: Steady income streams for sustained prosperity.</li>
-            </ul>
-            <button onclick="location.href='evt.html'">Explore EVT</button>
-        </div>
+  <input type="number" id="amount" placeholder="BNB Amount" value="0.013" step="0.001">
 
-        <div class="transparent-metrics">
-            <h2>Full Transparency on Taxes and Metrics</h2>
-            <p>We believe in complete openness. All our tokens feature a 3% buy tax that goes to the treasury for ecosystem development and a 3% sell tax that is burned (with 50% auto-minted back to maintain stability). This ensures deflationary pressure while protecting supply floors at 50 million per token.</p>
-            <table>
-                <tr><th>Metric</th><th>Value</th></tr>
-                <tr><td>Total Supply (All Tokens)</td><td>500,000,000</td></tr>
-                <tr><td>Per Token Supply</td><td>100,000,000</td></tr>
-                <tr><td>Minimum Supply Floor</td><td>50,000,000 per token</td></tr>
-                <tr><td>Buy Tax</td><td>3% to treasury</td></tr>
-                <tr><td>Sell Tax</td><td>3% burned (50% minted back)</td></tr>
-                <tr><td>Cross-Ownership</td><td>5% of each token owned by others</td></tr>
-                <tr><td>Stablecoin Allocation (Child Savings)</td><td>90% at birth, decreasing to 55% at 18</td></tr>
-                <tr><td>Annual Contribution Limit (Child Savings)</td><td>$5,000</td></tr>
-                <tr><td>Tax Credit on Deposits</td><td>5%</td></tr>
-                <tr><td>Early Withdrawal Penalty</td><td>10%</td></tr>
-            </table>
-            <p>All taxes are handled on-chain and are fully auditable. Gains are tax-deferred until maturity, with no taxes on internal rebalancing or compounding. Consult local tax authorities for compliance.</p>
-            <button onclick="alert('Connect Wallet Coming Soon')">Connect Wallet</button>
-        </div>
-    </div>
+  <div id="status">Status: Not connected</div>
+  <div id="opportunities"></div>
+</div>
 
-    <footer>
-        <p>&copy; 2025 Éire Crypto Ecosystem. All rights reserved. This is not financial advice. Consult tax professionals for local regulations.</p>
-    </footer>
+<script>
+  const WBNB = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+  const COINS = [
+    { addr: "0x55d398326f99059fF775485246999027B3197955", sym: "USDT" },
+    { addr: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56", sym: "BUSD" },
+    { addr: "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82", sym: "CAKE" },
+    { addr: "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3", sym: "SAFEMOON" },
+    { addr: "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3", sym: "DAI" }
+  ];
+
+  let web3, account, intervalId;
+
+  document.getElementById("connectBtn").onclick = async () => {
+    if (!window.ethereum) return updateStatus("No wallet! Install MetaMask/Trust Wallet.");
+    web3 = new Web3(window.ethereum);
+    try {
+      await ethereum.request({ method: 'eth_requestAccounts' });
+      account = (await web3.eth.getAccounts())[0];
+      document.getElementById("wallet").innerText = `Wallet: ${account.slice(0,8)}...${account.slice(-6)}`;
+      updateStatus("Connected! Auto-scan every 10s...");
+      startAutoScan();
+    } catch (e) { updateStatus("Wallet rejected"); }
+  };
+
+  function startAutoScan() {
+    if (intervalId) clearInterval(intervalId);
+    scanOnce();
+    intervalId = setInterval(scanOnce, 10000); // Every 10 seconds
+  }
+
+  async function scanOnce() {
+    if (!account) return;
+    updateStatus("Scanning 5+ coins...");
+    document.getElementById("opportunities").innerHTML = "";
+
+    const amountBNB = parseFloat(document.getElementById("amount").value) || 0.013;
+    const amountWei = web3.utils.toWei(amountBNB.toString(), "ether");
+
+    let best = null;
+
+    for (const coin of COINS) {
+      try {
+        const buy = await getQuote(WBNB, coin.addr, amountWei);
+        if (!buy || !buy.toAmount) continue;
+
+        const sell = await getQuote(coin.addr, WBNB, buy.toAmount);
+        if (!sell || !sell.toAmount) continue;
+
+        const profitWei = BigInt(sell.toAmount) - BigInt(amountWei);
+        const gasPrice = await web3.eth.getGasPrice();
+        const gasEst = BigInt(gasPrice) * BigInt(450000);
+        const netProfit = profitWei - gasEst;
+
+        if (netProfit > 0n) {
+          const profitBNB = Number(netProfit) / 1e18;
+          const profitPct = (profitBNB / amountBNB) * 100;
+
+          if (!best || profitPct > best.profitPct) {
+            best = { ...coin, buy, sell, profitBNB, profitPct, amountBNB };
+          }
+        }
+      } catch (e) { continue; }
+    }
+
+    if (best) {
+      showOpportunity(best);
+    } else {
+      updateStatus("No good coins found this scan.");
+    }
+  }
+
+  async function getQuote(from, to, amount) {
+    const url = `https://li.quest/v1/quote?fromChain=BSC&toChain=BSC&fromToken=${from}&toToken=${to}&fromAmount=${amount}&fromAddress=${account}`;
+    try {
+      const res = await fetch(url, { timeout: 8000 });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch { return null; }
+  }
+
+  function showOpportunity(data) {
+    const div = document.createElement("div");
+    div.className = "opp";
+    div.innerHTML = `
+      <b>GOOD COIN FOUND!</b><br>
+      Token: <b>${data.sym}</b><br>
+      Buy on <b>Li.Fi</b> → Sell on <b>Li.Fi</b><br>
+      Invest: ${data.amountBNB} BNB<br>
+      <span class="profit">Profit: ${data.profitBNB.toFixed(6)} BNB (${data.profitPct.toFixed(2)}%)</span><br>
+      <button onclick="execute('${btoa(JSON.stringify(data.buy.transaction.request))}', '${btoa(JSON.stringify(data.sell.transaction.request))}')" 
+              style="margin-top:10px; width:100%; padding:12px; background:#0f0; color:#000; border:none; border-radius:8px;">
+        Execute Now
+      </button>
+    `;
+    const container = document.getElementById("opportunities");
+    container.innerHTML = "";
+    container.appendChild(div);
+  }
+
+  window.execute = async (buyB64, sellB64) => {
+    try {
+      updateStatus("Sending BUY...");
+      const buyTx = JSON.parse(atob(buyB64));
+      await ethereum.request({ method: 'eth_sendTransaction', params: [{ from: account, ...buyTx }] });
+
+      updateStatus("BUY sent! Waiting 12s...");
+      await new Promise(r => setTimeout(r, 12000));
+
+      updateStatus("Sending SELL...");
+      const sellTx = JSON.parse(atob(sellB64));
+      await ethereum.request({ method: 'eth_sendTransaction', params: [{ from: account, ...sellTx }] });
+
+      updateStatus("Arbitrage complete! Refreshing in 10s...");
+    } catch (e) {
+      updateStatus("Failed: " + (e.message || "Rejected"));
+    }
+  };
+
+  function updateStatus(msg) {
+    document.getElementById("status").innerText = "Status: " + msg;
+  }
+</script>
+
 </body>
 </html>
