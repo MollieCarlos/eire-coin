@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BSC Arbitrage Bot – Auto 10s Refresh</title>
+  <title>BSC Arbitrage Bot – Fixed Auto 10s Scan</title>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
   <style>
     body { font-family: Arial; background: #111; color: #0f0; padding: 20px; }
@@ -13,19 +13,21 @@
     .opp { background: #222; padding: 15px; border-radius: 8px; margin: 15px 0; }
     .profit { font-weight: bold; color: #0f0; }
     #status { margin: 15px 0; font-weight: bold; }
+    #debug { background: #333; padding: 10px; font-size: 12px; max-height: 100px; overflow-y: scroll; }
   </style>
 </head>
 <body>
 
 <div class="bot">
-  <h2 style="text-align:center; margin:0 0 20px;">BSC Arbitrage Bot – Auto 10s Scan</h2>
+  <h2 style="text-align:center; margin:0 0 20px;">BSC Arbitrage Bot – Fixed Auto 10s Scan</h2>
 
-  <button id="connectBtn">Connect Any Wallet</button>
+  <button id="connectBtn">Connect Any Wallet (Fixed)</button>
   <div id="wallet" style="margin:12px 0; font-weight:bold;"></div>
 
   <input type="number" id="amount" placeholder="BNB Amount" value="0.013" step="0.001">
 
   <div id="status">Status: Not connected</div>
+  <div id="debug"></div> <!-- Debug logs here -->
   <div id="opportunities"></div>
 </div>
 
@@ -40,17 +42,75 @@
   ];
 
   let web3, account, intervalId;
+  const BSC_CHAIN_ID = '0x38'; // Hex for mainnet 56
+  const TESTNET_CHAIN_ID = '0x61'; // Hex for testnet 97 (uncomment for testing)
+
+  function logDebug(msg) {
+    console.log(msg);
+    const debugDiv = document.getElementById("debug");
+    debugDiv.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${msg}</div>`;
+    debugDiv.scrollTop = debugDiv.scrollHeight;
+  }
 
   document.getElementById("connectBtn").onclick = async () => {
-    if (!window.ethereum) return updateStatus("No wallet! Install MetaMask/Trust Wallet.");
-    web3 = new Web3(window.ethereum);
+    logDebug("Attempting wallet connection...");
+    let provider = window.ethereum || window.trustWallet || window.BinanceChain;
+    if (!provider) {
+      logDebug("No provider found. Trying fallback...");
+      // Fallback: Check if in Trust Wallet browser
+      if (navigator.userAgent.includes('Trust')) {
+        provider = window.ethereum; // Force retry
+      } else {
+        return updateStatus("No wallet detected! Use Trust Wallet Browser or MetaMask.");
+      }
+    }
+
+    web3 = new Web3(provider);
+
     try {
-      await ethereum.request({ method: 'eth_requestAccounts' });
-      account = (await web3.eth.getAccounts())[0];
-      document.getElementById("wallet").innerText = `Wallet: ${account.slice(0,8)}...${account.slice(-6)}`;
+      // Async retry for Trust Wallet (common fix)
+      let accounts;
+      try {
+        accounts = await provider.request({ method: 'eth_requestAccounts' });
+      } catch (e) {
+        logDebug("eth_requestAccounts failed, trying enable() fallback: " + e.message);
+        accounts = await provider.enable(); // Legacy for older wallets
+      }
+      account = accounts[0];
+      logDebug("Accounts fetched: " + accounts.length);
+
+      // Switch to BSC (with retry)
+      try {
+        await provider.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: BSC_CHAIN_ID }], // Use TESTNET_CHAIN_ID for testing
+        });
+        logDebug("Switched to BSC");
+      } catch (switchError) {
+        if (switchError.code === 4902) { // Chain not added
+          await provider.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+              chainId: BSC_CHAIN_ID,
+              chainName: 'BNB Smart Chain',
+              nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
+              rpcUrls: ['https://bsc-dataseed.binance.org/'],
+              blockExplorerUrls: ['https://bscscan.com']
+            }]
+          });
+          logDebug("Added BSC chain");
+        } else {
+          logDebug("Chain switch error: " + switchError.message);
+        }
+      }
+
+      document.getElementById("wallet").innerText = `Wallet: ${account.slice(0,8)}...${account.slice(-6)} (BSC)`;
       updateStatus("Connected! Auto-scan every 10s...");
       startAutoScan();
-    } catch (e) { updateStatus("Wallet rejected"); }
+    } catch (e) {
+      logDebug("Connection failed: " + e.message);
+      updateStatus("Wallet rejected. Check debug logs.");
+    }
   };
 
   function startAutoScan() {
@@ -71,11 +131,18 @@
 
     for (const coin of COINS) {
       try {
+        logDebug(`Scanning ${coin.sym}...`);
         const buy = await getQuote(WBNB, coin.addr, amountWei);
-        if (!buy || !buy.toAmount) continue;
+        if (!buy || !buy.toAmount) {
+          logDebug(`${coin.sym} buy failed`);
+          continue;
+        }
 
         const sell = await getQuote(coin.addr, WBNB, buy.toAmount);
-        if (!sell || !sell.toAmount) continue;
+        if (!sell || !sell.toAmount) {
+          logDebug(`${coin.sym} sell failed`);
+          continue;
+        }
 
         const profitWei = BigInt(sell.toAmount) - BigInt(amountWei);
         const gasPrice = await web3.eth.getGasPrice();
@@ -85,28 +152,46 @@
         if (netProfit > 0n) {
           const profitBNB = Number(netProfit) / 1e18;
           const profitPct = (profitBNB / amountBNB) * 100;
+          logDebug(`${coin.sym} profit: ${profitPct.toFixed(2)}%`);
 
           if (!best || profitPct > best.profitPct) {
             best = { ...coin, buy, sell, profitBNB, profitPct, amountBNB };
           }
         }
-      } catch (e) { continue; }
+      } catch (e) {
+        logDebug(`Error scanning ${coin.sym}: ${e.message}`);
+        continue;
+      }
     }
 
     if (best) {
       showOpportunity(best);
+      updateStatus(`Found! ${best.sym} profit: ${best.profitPct.toFixed(2)}% – Execute?`);
     } else {
-      updateStatus("No good coins found this scan.");
+      updateStatus("No good coins this scan. Retrying in 10s...");
     }
   }
 
   async function getQuote(from, to, amount) {
     const url = `https://li.quest/v1/quote?fromChain=BSC&toChain=BSC&fromToken=${from}&toToken=${to}&fromAmount=${amount}&fromAddress=${account}`;
     try {
-      const res = await fetch(url, { timeout: 8000 });
-      if (!res.ok) return null;
+      const controller = new AbortController(); // For timeout
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+      const res = await fetch(url, { 
+        signal: controller.signal,
+        headers: { 'Accept': 'application/json' }
+      });
+      clearTimeout(timeoutId);
+      if (!res.ok) {
+        const err = await res.text();
+        if (err.includes('rate limit')) logDebug('LiFi rate limit hit – wait 2hrs or get API key');
+        return null;
+      }
       return await res.json();
-    } catch { return null; }
+    } catch (e) {
+      logDebug('Fetch error: ' + e.message);
+      return null;
+    }
   }
 
   function showOpportunity(data) {
@@ -143,6 +228,7 @@
 
       updateStatus("Arbitrage complete! Refreshing in 10s...");
     } catch (e) {
+      logDebug("Execute error: " + e.message);
       updateStatus("Failed: " + (e.message || "Rejected"));
     }
   };
