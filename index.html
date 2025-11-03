@@ -1,173 +1,194 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BSC Arbitrage Bot – Live Auto-Scan</title>
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
-  <style>
-    :root { --green: #0f0; --dark: #111; --darker: #222; }
-    * { box-sizing: border-box; }
-    body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      background: var(--dark); 
-      color: var(--green); 
-      margin: 0; 
-      padding: 20px; 
-      line-height: 1.6;
-    }
-    .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 2px solid var(--green); border-radius: 16px; background: #0a0a0a; }
-    h1 { text-align: center; margin: 0 0 25px; font-size: 24px; }
-    button { 
-      width: 100%; padding: 14px; margin: 12px 0; font-size: 18px; background: #0a0; color: #000; 
-      border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s;
-    }
-    button:hover { background: #0f0; }
-    button:disabled { background: #333; cursor: not-allowed; }
-    input { 
-      width: 100%; padding: 12px; margin: 10px 0; background: var(--darker); color: var(--green); 
-      border: 1px solid var(--green); border-radius: 8px; font-size: 16px;
-    }
-    .status { margin: 15px 0; font-weight: bold; min-height: 24px; }
-    .wallet { margin: 10px 0; font-weight: bold; word-break: break-all; }
-    .opp { 
-      background: var(--darker); padding: 16px; border-radius: 12px; margin: 15px 0; 
-      border-left: 4px solid var(--green);
-    }
-    .profit { font-weight: bold; color: #0f0; font-size: 18px; }
-    .warning { 
-      background: #550000; padding: 15px; border-radius: 10px; margin: 15px 0; 
-      color: #ff0; font-size: 14px; text-align: center;
-    }
-    .debug { 
-      background: #333; padding: 12px; font-size: 12px; max-height: 120px; overflow-y: auto; 
-      color: #aaa; border-radius: 8px; margin-top: 10px;
-    }
-    footer { text-align: center; margin-top: 40px; font-size: 12px; color: #666; }
-  </style>
-</head>
-<body>
+<!-- ==== BSC ARBITRAGE BOT – LIVE ON YOUR WEBSITE ==== -->
+<div style="max-width:600px; margin:30px auto; padding:20px; border:2px solid #0f0; border-radius:16px; background:#0a0a0a; color:#0f0; font-family:Arial;">
+  <h2 style="text-align:center; margin:0 0 20px;">BSC Arbitrage Scanner</h2>
 
-<div class="container">
-  <h1>BSC Arbitrage Bot</h1>
+  <button id="connectBtn" style="width:100%; padding:14px; font-size:18px; background:#0a0; color:#000; border:none; border-radius:10px; margin-bottom:15px;">
+    Connect Wallet
+  </button>
 
-  <div class="warning">
-    <b>OPEN IN WALLET BROWSER</b><br>
-    Use <b>Trust Wallet</b> → Globe icon<br>
-    or <b>MetaMask</b> → Browser tab
-  </div>
+  <div id="wallet" style="margin-bottom:10px; font-weight:bold;"></div>
 
-  <button id="connectBtn">Connect Wallet</button>
-  <div id="wallet" class="wallet">Wallet: Not connected</div>
+  <input type="number" id="bnbAmount" placeholder="BNB Amount" value="0.013" step="0.001"
+         style="width:100%; padding:12px; margin:10px 0; background:#222; color:#0f0; border:1px solid #0f0; border-radius:8px;">
 
-  <input type="number" id="amount" placeholder="BNB Amount to Invest" value="0.013" step="0.001">
+  <div id="status" style="margin:15px 0; font-weight:bold;">Status: Not connected</div>
+  <div id="debug" style="background:#222; padding:10px; font-size:12px; max-height:100px; overflow-y:auto; margin-bottom:15px; border-radius:8px;"></div>
 
-  <div id="status" class="status">Status: Not connected</div>
-  <div id="debug" class="debug"></div>
-  <div id="opportunities"></div>
+  <div id="trades"></div>
 </div>
 
-<footer>Auto-scan every 10s • No private key • 100% on-chain</footer>
-
 <script>
-  // === CONFIG ===
-  const WBNB = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
-  const BSC_CHAIN_ID = '0x38'; // Mainnet 56
-  const COINS = [
-    { addr: "0x55d398326f99059fF775485246999027B3197955", sym: "USDT" },
-    { addr: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56", sym: "BUSD" },
-    { addr: "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82", sym: "CAKE" },
-    { addr: "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3", sym: "SAFEMOON" },
-    { addr: "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3", sym: "DAI" }
-  ];
+// === CONFIG ===
+const WBNB = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+const BSC_CHAIN_ID = "0x38";
+const SCAN_INTERVAL = 10000; // 10 seconds
 
-  let web3, account, intervalId;
-  const connectBtn = document.getElementById("connectBtn");
+// Top BSC tokens (auto-fetched from CoinGecko)
+let TOP_TOKENS = [];
 
-  // === DEBUG LOG ===
-  function log(msg) {
-    console.log(msg);
-    const d = document.getElementById("debug");
-    d.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${msg}</div>`;
-    d.scrollTop = d.scrollHeight;
+// === DEBUG LOG ===
+function log(msg) {
+  console.log(msg);
+  const d = document.getElementById('debug');
+  d.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${msg}</div>`;
+  d.scrollTop = d.scrollHeight;
+}
+
+function setStatus(txt) {
+  document.getElementById('status').innerText = 'Status: ' + txt;
+}
+
+// === FETCH TOP 50 BSC TOKENS ===
+async function fetchTopTokens() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=binance-smart-chain&order=volume_desc&per_page=50&page=1');
+    const data = await res.json();
+    TOP_TOKENS = data.map(coin => ({
+      addr: coin.platforms?.['binance-smart-chain'] || null,
+      sym: coin.symbol.toUpperCase()
+    })).filter(t => t.addr);
+    log(`Loaded ${TOP_TOKENS.length} BSC tokens`);
+  } catch (e) {
+    log('Token fetch failed: ' + e.message);
   }
+}
 
-  // === UNIVERSAL WALLET CONNECT (EIP-1193 + Trust Wallet Fix) ===
-  connectBtn.onclick = async () => {
-    log("Connecting wallet...");
-    let provider = window.ethereum || window.web3?.currentProvider;
+// === CONNECT WALLET (ANY BSC WALLET) ===
+document.getElementById('connectBtn').onclick = async () => {
+  log('Connecting...');
+  let provider = window.ethereum || window.trustWallet;
+  if (!provider) return alert('No wallet! Use Trust Wallet or MetaMask browser.');
 
-    // Trust Wallet DApp Browser Fix
-    if (!provider && /Trust/.test(navigator.userAgent)) {
-      log("Trust Wallet detected – forcing provider");
-      provider = {
-        request: (args) => new Promise((resolve, reject) => {
-          const id = Date.now();
-          window.postMessage({ type: 'trustwallet', id, data: args }, '*');
-          const handler = (e) => {
-            if (e.data.id === id) {
-              window.removeEventListener('message', handler);
-              e.data.error ? reject(e.data.error) : resolve(e.data.result);
-            }
-          };
-          window.addEventListener('message', handler);
-        })
-      };
-    }
+  const web3 = new Web3(provider);
+  try {
+    const accounts = await provider.request({ method: 'eth_requestAccounts' });
+    const account = accounts[0];
+    log('Connected: ' + account);
 
-    if (!provider) {
-      log("No provider found");
-      return alert("No wallet detected! Open in Trust Wallet or MetaMask Browser.");
-    }
-
-    web3 = new Web3(provider);
-
+    // Switch to BSC
     try {
-      let accounts;
-      try {
-        accounts = await provider.request({ method: 'eth_requestAccounts' });
-      } catch (e) {
-        log("Using legacy enable(): " + e.message);
-        accounts = await provider.enable();
-      }
-
-      account = accounts[0];
-      log("Connected: " + account);
-
-      // Auto-switch to BSC
-      try {
-        await provider.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: BSC_CHAIN_ID }] });
-      } catch (e) {
-        if (e.code === 4902) {
-          await provider.request({
-            method: 'wallet_addEthereumChain',
-            params: [{
-              chainId: BSC_CHAIN_ID,
-              chainName: 'BNB Smart Chain',
-              nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
-              rpcUrls: ['https://bsc-dataseed.binance.org/'],
-              blockExplorerUrls: ['https://bscscan.com']
-            }]
-          });
-        }
-      }
-
-      document.getElementById("wallet").innerText = `Wallet: ${account.slice(0,6)}...${account.slice(-4)}`;
-      updateStatus("Connected! Auto-scanning every 10s...");
-      connectBtn.disabled = true;
-      startAutoScan();
+      await provider.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: BSC_CHAIN_ID }] });
     } catch (e) {
-      log("Connection failed: " + e.message);
-      updateStatus("Connection failed. Try again.");
+      if (e.code === 4902) {
+        await provider.request({ method: 'wallet_addEthereumChain', params: [{
+          chainId: BSC_CHAIN_ID,
+          chainName: 'BNB Smart Chain',
+          rpcUrls: ['https://bsc-dataseed.binance.org/'],
+          nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
+          blockExplorerUrls: ['https://bscscan.com']
+        }]});
+      }
     }
-  };
 
-  // === AUTO SCAN EVERY 10 SECONDS ===
-  function startAutoScan() {
-    if (intervalId) clearInterval(intervalId);
-    scanOnce();
-    intervalId = setInterval(scanOnce, 10000);
+    document.getElementById('wallet').innerText = `Wallet: ${account.slice(0,6)}…${account.slice(-4)}`;
+    setStatus('Connected – scanning every 10s');
+    await fetchTopTokens();
+    startScanner(web3, account);
+  } catch (e) {
+    log('Error: ' + e.message);
+    alert('Connection failed');
+  }
+};
+
+// === SCANNER LOOP ===
+let scanTimer;
+function startScanner(web3, account) {
+  if (scanTimer) clearInterval(scanTimer);
+  scanOnce(web3, account);
+  scanTimer = setInterval(() => scanOnce(web3, account), SCAN_INTERVAL);
+}
+
+// === ONE SCAN: FIND TOP 5 TRADES ===
+async function scanOnce(web3, account) {
+  if (TOP_TOKENS.length === 0) return setStatus('Loading tokens...');
+
+  setStatus('Scanning 50+ tokens...');
+  document.getElementById('trades').innerHTML = '';
+
+  const amountBNB = parseFloat(document.getElementById('bnbAmount').value) || 0.013;
+  const amountWei = web3.utils.toWei(amountBNB.toString(), 'ether');
+  const gasPrice = await web3.eth.getGasPrice();
+  const gasEst = gasPrice * 450000;
+
+  let opportunities = [];
+
+  for (const token of TOP_TOKENS) {
+    try {
+      const buy = await getLiFiQuote(WBNB, token.addr, amountWei);
+      if (!buy?.toAmount) continue;
+      const sell = await getLiFiQuote(token.addr, WBNB, buy.toAmount);
+      if (!sell?.toAmount) continue;
+
+      const profitWei = BigInt(sell.toAmount) - BigInt(amountWei) - gasEst;
+      if (profitWei <= 0n) continue;
+
+      const profitBNB = Number(profitWei) / 1e18;
+      const profitPct = (profitBNB / amountBNB) * 100;
+
+      opportunities.push({
+        token: token.sym,
+        profitPct,
+        profitBNB,
+        buyTx: buy.transaction?.request,
+        sellTx: sell.transaction?.request
+      });
+    } catch (e) { continue; }
   }
 
-  async function scanOnce() {
-    if (!
+  // Top 5
+  const top5 = opportunities.sort((a, b) => b.profitPct - a.profitPct).slice(0, 5);
+  showTop5(top5);
+  setStatus(top5.length > 0 ? `Found ${top5.length} trades!` : 'No profit found');
+}
+
+// === Li.Fi Quote ===
+async function getLiFiQuote(from, to, amount) {
+  const url = `https://li.quest/v1/quote?fromChain=BSC&toChain=BSC&fromToken=${from}&toToken=${to}&fromAmount=${amount}&fromAddress=${account}`;
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    return res.ok ? await res.json() : null;
+  } catch { return null; }
+}
+
+// === SHOW TOP 5 TRADES ===
+function showTop5(trades) {
+  const container = document.getElementById('trades');
+  container.innerHTML = trades.length === 0 ? '<p>No profitable trades.</p>' : '';
+
+  trades.forEach((trade, i) => {
+    const div = document.createElement('div');
+    div.style = 'background:#222; padding:14px; border-radius:10px; margin:12px 0; border-left:4px solid #0f0;';
+    div.innerHTML = `
+      <b>#${i+1} ${trade.token}</b><br>
+      <span style="color:#0f0; font-weight:bold;">${trade.profitPct.toFixed(2)}% profit</span> (${trade.profitBNB.toFixed(6)} BNB)<br>
+      <button onclick="executeTrade('${btoa(JSON.stringify(trade.buyTx))}', '${btoa(JSON.stringify(trade.sellTx))}')"
+              style="margin-top:8px; width:100%; padding:10px; background:#0f0; color:#000; border:none; border-radius:8px;">
+        Execute Now
+      </button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// === EXECUTE TRADE ===
+window.executeTrade = async (buyB64, sellB64) => {
+  if (!window.ethereum) return alert('Wallet not connected');
+  try {
+    setStatus('Sending BUY...');
+    const buyTx = JSON.parse(atob(buyB64));
+    await ethereum.request({ method: 'eth_sendTransaction', params: [{ from: account, ...buyTx }] });
+
+    setStatus('BUY sent – waiting 12s...');
+    await new Promise(r => setTimeout(r, 12000));
+
+    setStatus('Sending SELL...');
+    const sellTx = JSON.parse(atob(sellB64));
+    await ethereum.request({ method: 'eth_sendTransaction', params: [{ from: account, ...sellTx }] });
+
+    setStatus('Trade complete!');
+  } catch (e) {
+    setStatus('Failed: ' + e.message);
+  }
+};
+</script>
+<!-- ==== END BOT ==== -->
