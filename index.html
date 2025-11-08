@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KIDS Coin – Crypto for Kids, Built by Parents</title>
+  <title>KIDS Coin – LIVE on Pump.fun!</title>
   <meta name="description"
-        content="KIDS Coin teaches children the value of money through crypto. Buy on Pump.fun now and get airdrops + future savings vaults." />
+        content="KIDS Coin is LIVE! Buy now on Pump.fun and get airdrops + future vaults for pocket money, travel, and retirement." />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@400;600;700&display=swap"
@@ -59,6 +59,13 @@
     }
     .btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,157,.6);}
 
+    /* Live Price Ticker */
+    .price-ticker{
+      background:var(--purple);color:#fff;padding:0.8rem 0;text-align:center;
+      font-weight:700;font-size:1.1rem;position:sticky;top:60px;z-index:99;
+    }
+    .price-ticker span{color:var(--yellow);}
+
     /* Sections */
     section{padding:5rem 0;}
     .section-title{
@@ -95,9 +102,13 @@
       position:relative;overflow:hidden;color:#fff;
     }
     .seed-round::before{
-      content:'SEED ROUND LIVE';position:absolute;top:25px;right:-60px;
+      content:'LIVE ON PUMP.FUN';position:absolute;top:25px;right:-60px;
       background:var(--purple);color:#fff;padding:12px 80px;font-weight:bold;
       transform:rotate(45deg);font-size:1.1rem;box-shadow:0 3px 15px rgba(0,0,0,.3);
+    }
+    .countdown{
+      background:var(--green);color:#fff;padding:0.7rem 1.5rem;border-radius:50px;
+      font-weight:bold;margin:1rem 0;display:inline-block;
     }
     .seed-badge{
       display:inline-flex;align-items:center;background:var(--green);color:#fff;
@@ -105,34 +116,17 @@
       font-size:1.3rem;
     }
     .seed-badge img{width:40px;height:40px;margin-right:10px;border-radius:50%;}
-    .airdrop-list{
-      text-align:left;max-width:750px;margin:3rem auto;
-      background:rgba(255,255,255,.95);padding:3rem;border-radius:30px;
-      box-shadow:0 20px 50px rgba(0,0,0,.2);
-    }
-    .airdrop-list li{
-      padding:1.2rem 0;border-bottom:1px dashed rgba(0,0,0,.2);
-      display:flex;justify-content:space-between;font-weight:500;font-size:1.15rem;
-    }
-    .airdrop-list li:last-child{border-bottom:none;}
-    .highlight{color:var(--yellow);font-weight:700;}
 
-    /* Ecosystem */
-    .ecosystem-details{
-      background:var(--accent);border-radius:35px;padding:4.5rem;margin:3rem 0;
+    /* Social Share */
+    .social-share{
+      margin-top:2rem;display:flex;gap:1rem;justify-content:center;
     }
-    .ecosystem-details ul{list-style:none;max-width:900px;margin:2.5rem auto;}
-    .ecosystem-details li{
-      background:#fff;padding:2rem;margin-bottom:2rem;border-radius:20px;
-      box-shadow:0 8px 25px rgba(0,0,0,.06);display:flex;align-items:center;
+    .social-share a{
+      background:#fff;color:var(--text);width:50px;height:50px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+      box-shadow:0 5px 15px rgba(0,0,0,.1);transition:.3s;
     }
-    .ecosystem-details li i{font-size:2.5rem;margin-right:2rem;color:var(--blue);}
-    .ecosystem-details li strong{color:var(--pink);font-size:1.3rem;}
-    .token-name{
-      display:flex;align-items:center;justify-content:center;margin:2rem 0;
-      font-size:1.5rem;font-weight:700;
-    }
-    .token-name img{width:60px;height:60px;margin-right:15px;border-radius:50%;}
+    .social-share a:hover{transform:scale(1.1);}
 
     /* Footer */
     footer{
@@ -157,18 +151,25 @@
 </head>
 <body>
 
-  <!-- 1. LOGO IN HEADER -->
+  <!-- LOGO IN HEADER -->
   <header>
     <div class="container">
       <div class="logo">
         <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Coin Logo">
       </div>
       <h1>KIDS Coin</h1>
-      <p class="tagline">
-        The Fun Crypto That Teaches Kids Money, Savings, and Smart Investing – While Building Their Future!
-      </p>
+      <p class="tagline">LIVE on Pump.fun – Buy Now & Get Airdrops for Your Kids’ Future!</p>
     </div>
   </header>
+
+  <!-- LIVE PRICE TICKER -->
+  <div class="price-ticker">
+    $KIDS Price: <span id="price">Loading...</span> | 
+    Market Cap: <span id="mc">Loading...</span> | 
+    <a href="https://pump.fun/coin/Gu89b3CdG2QoMdBdpoRZvfkJ7RJXzZ96QdAJxKXKpump" target="_blank" style="color:var(--yellow);text-decoration:underline;">
+      BUY LIVE
+    </a>
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -181,19 +182,21 @@
         <a href="#roadmap">Roadmap</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="https://pump.fun" target="_blank" class="btn">Buy on Pump.fun</a>
+      <a href="https://pump.fun/coin/Gu89b3CdG2QoMdBdpoRZvfkJ7RJXzZ96QdAJxKXKpump" target="_blank" class="btn">
+        BUY $KIDS NOW
+      </a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
     <div class="container" style="text-align:center;padding:3rem 0;">
-      <h2 class="section-title" style="font-size:2.8rem;">A Crypto Piggy Bank for Your Child’s Future</h2>
+      <h2 class="section-title" style="font-size:2.8rem;">$KIDS IS LIVE ON PUMP.FUN!</h2>
       <p style="font-size:1.3rem;max-width:900px;margin:0 auto 2rem;color:#475569;">
-        KIDS Coin turns pocket money into real savings. Parents stake crypto. Kids learn finance. 50% in stablecoins = no scary drops.
+        Every buy = airdrop + vault shares on BSC. 50% in stablecoins. Real savings for real kids.
       </p>
-      <a href="https://pump.fun" target="_blank" class="btn" style="font-size:1.3rem;padding:1rem 2.5rem;">
-        Join Seed Round & Get Airdrop!
+      <a href="https://pump.fun/coin/Gu89b3CdG2QoMdBdpoRZvfkJ7RJXzZ96QdAJxKXKpump" target="_blank" class="btn" style="font-size:1.3rem;padding:1rem 2.5rem;">
+        BUY ON PUMP.FUN NOW
       </a>
     </div>
   </section>
@@ -206,30 +209,7 @@
         <div class="card"><i class="fas fa-piggy-bank"></i><h3>Pocket Money</h3><p>Weekly allowance from staked funds.</p></div>
         <div class="card"><i class="fas fa-plane-departure"></i><h3>Backpacking Fund</h3><p>Locked until 18 – fund their first trip!</p></div>
         <div class="card"><i class="fas fa-shield-alt"></i><h3>50% Stablecoins</h3><p>Half in USDT/USDC – safe & steady.</p></div>
-        <div class="card"><i class="fas fa-wallet"></i><h3>Savings Branch</h3><p>Medium-term lock with auto-compounding.</p></div>
-        <div class="card"><i class="fas fa-receipt"></i><h3>Subscriptions & Fees</h3><p>Monthly payouts for real-life costs.</p></div>
-        <div class="card"><i class="fas fa-hand-holding-usd"></i><h3>OAP Starter</h3><p>Ultra-long lock for retirement basics.</p></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ECOSYSTEM -->
-  <section id="ecosystem">
-    <div class="container ecosystem-details">
-      <h2 class="section-title">The KIDS Coin Ecosystem</h2>
-
-      <!-- 2. LOGO NEXT TO TOKEN NAME -->
-      <div class="token-name">
-        <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Logo">
-        <span>$KIDS – The Heart of the System</span>
-      </div>
-
-      <ul>
-        <li><i class="fas fa-coins"></i><div><strong>Main Token:</strong> 5% tax → liquidity, treasury, burn.</div></li>
-        <li><i class="fas fa-lock"></i><div><strong>Child Vaults:</strong> Stake BTC, ETH, BNB – auto 50% to stables.</div></li>
-        <li><i class="fas fa-chart-line"></i><div><strong>Funding Flow:</strong> Treasury distributes weekly/monthly.</div></li>
-        <li><i class="fas fa-graduation-cap"></i><div><strong>Educational Tools:</strong> Dashboards, badges, real-time charts.</div></li>
-      </ul>
     </div>
   </section>
 
@@ -237,26 +217,30 @@
   <section id="seed">
     <div class="container">
       <div class="seed-round">
-        <h2 class="section-title" style="color:#fff;">Seed Round LIVE on Pump.fun!</h2>
-
-        <!-- 3. LOGO IN BADGE -->
+        <h2 class="section-title" style="color:#fff;">Seed Round LIVE – Buy & Get Airdrops!</h2>
+        <div class="countdown" id="countdown">Calculating...</div>
         <div class="seed-badge">
           <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Logo">
           Founding Family Member
         </div>
-
         <div class="airdrop-list">
-          <h3 style="text-align:center;color:var(--text);">Airdrop Rewards</h3>
           <ul>
-            <li><span>Any Purchase</span><span class="highlight">1,000 KIDS + Founding NFT</span></li>
-            <li><span>Top 100 Buyers</span><span class="highlight">+10% Bonus KIDS</span></li>
-            <li><span>Top 10 Buyers</span><span class="highlight">+25% Bonus + Named Child Vault</span></li>
-            <li><span>All Buyers</span><span class="highlight">5% Total Supply Share (vested 12 mo)</span></li>
+            <li><span>Any Purchase</span><span class="highlight">1,000 KIDS + NFT</span></li>
+            <li><span>Top 100</span><span class="highlight">+10% Bonus</span></li>
+            <li><span>Top 10</span><span class="highlight">+25% + Named Vault</span></li>
+            <li><span>All</span><span class="highlight">5% Supply Share</span></li>
           </ul>
         </div>
+        <a href="https://pump.fun/coin/Gu89b3CdG2QoMdBdpoRZvfkJ7RJXzZ96QdAJxKXKpump" target="_blank"
+           class="btn" style="background:#fff;color:var(--text);margin-top:1.5rem;">
+          BUY $KIDS ON PUMP.FUN
+        </a>
 
-        <a href="https://pump.fun" target="_blank"
-           class="btn" style="background:#fff;color:var(--text);">Buy $KIDS Now</a>
+        <!-- SOCIAL SHARE -->
+        <div class="social-share">
+          <a href="https://twitter.com/intent/tweet?text=$KIDS%20is%20LIVE%20on%20Pump.fun!%20Buy%20now%20%F0%9F%9A%80%20https://pump.fun/coin/Gu89b3CdG2QoMdBdpoRZvfkJ7RJXzZ96QdAJxKXKpump" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://t.me/share/url?url=https://pump.fun/coin/Gu89b3CdG2QoMdBdpoRZvfkJ7RJXzZ96QdAJxKXKpump&text=$KIDS%20LIVE%20on%20Pump.fun!" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
       </div>
     </div>
   </section>
@@ -264,20 +248,47 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-
-      <!-- 4. LOGO IN FOOTER -->
       <div class="footer-logo">
         <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Coin">
       </div>
-
-      <p>© 2025 KIDS Coin. Built for Families. DYOR – Not financial advice.</p>
+      <p>© 2025 KIDS Coin. Built for Families. DYOR.</p>
       <div class="social-links" style="margin-top:1.5rem;">
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
       </div>
     </div>
   </footer>
+
+  <!-- LIVE PRICE + COUNTDOWN SCRIPT -->
+  <script>
+    const COIN_ADDRESS = "Gu89b3CdG2QoMdBdpoRZvfkJ7RJXzZ96QdAJxKXKpump";
+    const PUMP_API = `https://pump.fun/api/coin/${COIN_ADDRESS}`;
+
+    async function updatePrice() {
+      try {
+        const res = await fetch(PUMP_API);
+        const data = await res.json();
+        document.getElementById('price').textContent = `$${data.price_usd.toFixed(6)}`;
+        document.getElementById('mc').textContent = `$${data.market_cap.toLocaleString()}`;
+
+        // Countdown to Raydium (40 SOL liquidity)
+        const targetMC = 69000;
+        const progress = (data.market_cap / targetMC) * 100;
+        const countdownEl = document.getElementById('countdown');
+        if (progress >= 100) {
+          countdownEl.textContent = "GRADUATED TO RAYDIUM!";
+        } else {
+          countdownEl.textContent = `${progress.toFixed(1)}% to Raydium (~${((targetMC - data.market_cap)/data.price_usd/1e9).toFixed(1)} SOL left)`;
+        }
+      } catch (e) {
+        document.getElementById('price').textContent = "API down";
+      }
+    }
+
+    updatePrice();
+    setInterval(updatePrice, 10000); // Update every 10 sec
+  </script>
 
 </body>
 </html>
