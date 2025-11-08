@@ -4,379 +4,274 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KIDS Coin – Crypto for Kids, Built by Parents</title>
-  <meta name="description" content="KIDS Coin teaches children the value of money through crypto. Buy on Pump.fun now and get airdrops + future savings vaults for pocket money, travel, and retirement." />
-  
+  <meta name="description"
+        content="KIDS Coin teaches children the value of money through crypto. Buy on Pump.fun now and get airdrops + future savings vaults." />
+
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
-    :root {
-      --pink: #FF6B9D;
-      --blue: #4D9CFF;
-      --green: #34D399;
-      --yellow: #FBBF24;
-      --purple: #A78BFA;
-      --bg: #F8FAFC;
-      --text: #1E293B;
-      --card: #FFFFFF;
+    :root{
+      --pink:#FF6B9D;--blue:#4D9CFF;--green:#34D399;--yellow:#FBBF24;
+      --purple:#A78BFA;--orange:#FB923C;--red:#EF4444;--bg:#F8FAFC;
+      --text:#1E293B;--card:#FFFFFF;--accent:#EDE9FE;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+    .container{max-width:1200px;margin:auto;padding:0 20px;}
 
     /* Header */
-    header {
-      background: linear-gradient(135deg, var(--pink), var(--blue));
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    header{
+      background:linear-gradient(135deg,var(--pink),var(--blue),var(--green));
+      color:#fff;padding:4rem 0;text-align:center;position:relative;overflow:hidden;
     }
+    header::before{
+      content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="7" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="70" r="6" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+      animation:float 20s infinite linear;
+    }
+    @keyframes float{0%{transform:translate(0,0)}100%{transform:translate(100px,100px)}}
+    .logo{
+      width:160px;height:160px;border-radius:50%;border:6px solid #fff;
+      margin:0 auto 1.5rem;background:#fff;display:flex;align-items:center;
+      justify-content:center;box-shadow:0 15px 40px rgba(0,0,0,.25);
+      transition:transform .5s;
+    }
+    .logo:hover{transform:rotate(360deg);}
+    .logo img{width:100%;height:auto;border-radius:50%;}
+    h1{font-family:'Fredoka One',cursive;font-size:3.5rem;margin-bottom:.5rem;
+       text-shadow:2px 2px 6px rgba(0,0,0,.2);}
+    .tagline{font-size:1.5rem;opacity:.9;font-weight:600;max-width:900px;margin:auto;}
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="7" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="70" r="6" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-      animation: float 20s infinite linear;
+    /* Nav */
+    nav{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:100;}
+    .nav-container{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;}
+    .nav-links a{margin-left:2rem;text-decoration:none;color:var(--text);font-weight:600;transition:.3s;}
+    .nav-links a:hover{color:var(--pink);}
+    .btn{
+      background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;
+      padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:700;
+      display:inline-block;transition:.3s;box-shadow:0 5px 20px rgba(255,107,157,.4);
     }
-
-    @keyframes float {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(100px, 100px); }
-    }
-
-    .logo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 5px solid white;
-      margin: 0 auto 1rem;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      font-family: 'Fredoka One', cursive;
-      color: var(--pink);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .tagline {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      font-weight: 600;
-    }
-
-    /* Navigation */
-    nav {
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
-
-    .nav-links a {
-      margin-left: 2rem;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--pink);
-    }
-
-    .btn {
-      background: var(--pink);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      display: inline-block;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
-    }
+    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,157,.6);}
 
     /* Sections */
-    section {
-      padding: 4rem 0;
+    section{padding:5rem 0;}
+    .section-title{
+      text-align:center;font-family:'Fredoka One',cursive;font-size:3rem;
+      margin-bottom:3rem;position:relative;
     }
+    .section-title::after{
+      content:'';display:block;width:120px;height:6px;
+      background:linear-gradient(135deg,var(--pink),var(--blue));
+      margin:1rem auto 0;border-radius:6px;
+    }
+    .cards{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:2.5rem;margin-top:2rem;
+    }
+    .card{
+      background:var(--card);border-radius:25px;padding:2.5rem;text-align:center;
+      box-shadow:0 12px 35px rgba(0,0,0,.07);transition:.4s;border:3px solid transparent;
+    }
+    .card:hover{transform:translateY(-12px);border-color:var(--pink);
+                box-shadow:0 20px 50px rgba(0,0,0,.12);}
+    .card i{
+      font-size:4rem;margin-bottom:1.5rem;
+      background:linear-gradient(135deg,var(--pink),var(--blue));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .card h3{font-family:'Fredoka One',cursive;font-size:1.8rem;margin-bottom:1rem;}
+    .card p{font-size:1.1rem;color:#475569;}
 
-    .section-title {
-      text-align: center;
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: var(--text);
+    /* Seed Round */
+    .seed-round{
+      background:linear-gradient(135deg,var(--yellow),var(--orange),var(--red));
+      border-radius:35px;padding:4.5rem;text-align:center;margin:3rem 0;
+      position:relative;overflow:hidden;color:#fff;
     }
+    .seed-round::before{
+      content:'SEED ROUND LIVE';position:absolute;top:25px;right:-60px;
+      background:var(--purple);color:#fff;padding:12px 80px;font-weight:bold;
+      transform:rotate(45deg);font-size:1.1rem;box-shadow:0 3px 15px rgba(0,0,0,.3);
+    }
+    .seed-badge{
+      display:inline-flex;align-items:center;background:var(--green);color:#fff;
+      padding:.8rem 2rem;border-radius:50px;font-weight:bold;margin:1.5rem 0;
+      font-size:1.3rem;
+    }
+    .seed-badge img{width:40px;height:40px;margin-right:10px;border-radius:50%;}
+    .airdrop-list{
+      text-align:left;max-width:750px;margin:3rem auto;
+      background:rgba(255,255,255,.95);padding:3rem;border-radius:30px;
+      box-shadow:0 20px 50px rgba(0,0,0,.2);
+    }
+    .airdrop-list li{
+      padding:1.2rem 0;border-bottom:1px dashed rgba(0,0,0,.2);
+      display:flex;justify-content:space-between;font-weight:500;font-size:1.15rem;
+    }
+    .airdrop-list li:last-child{border-bottom:none;}
+    .highlight{color:var(--yellow);font-weight:700;}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+    /* Ecosystem */
+    .ecosystem-details{
+      background:var(--accent);border-radius:35px;padding:4.5rem;margin:3rem 0;
     }
-
-    .card {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-      border: 3px solid transparent;
+    .ecosystem-details ul{list-style:none;max-width:900px;margin:2.5rem auto;}
+    .ecosystem-details li{
+      background:#fff;padding:2rem;margin-bottom:2rem;border-radius:20px;
+      box-shadow:0 8px 25px rgba(0,0,0,.06);display:flex;align-items:center;
     }
-
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--pink);
+    .ecosystem-details li i{font-size:2.5rem;margin-right:2rem;color:var(--blue);}
+    .ecosystem-details li strong{color:var(--pink);font-size:1.3rem;}
+    .token-name{
+      display:flex;align-items:center;justify-content:center;margin:2rem 0;
+      font-size:1.5rem;font-weight:700;
     }
-
-    .card i {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--pink), var(--blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .card h3 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    /* Seed Round Section */
-    .seed-round {
-      background: linear-gradient(135deg, #FFF4E5, #E0F2FE);
-      border-radius: 30px;
-      padding: 3rem;
-      text-align: center;
-      margin: 3rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .seed-round::before {
-      content: 'SEED ROUND LIVE';
-      position: absolute;
-      top: 10px;
-      right: -40px;
-      background: #F59E0B;
-      color: white;
-      padding: 8px 60px;
-      font-weight: bold;
-      transform: rotate(45deg);
-      font-size: 0.9rem;
-    }
-
-    .seed-badge {
-      display: inline-block;
-      background: #10B981;
-      color: white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 50px;
-      font-weight: bold;
-      margin: 1rem 0;
-    }
-
-    .airdrop-list {
-      text-align: left;
-      max-width: 600px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .airdrop-list li {
-      padding: 0.8rem 0;
-      border-bottom: 1px dashed #E2E8F0;
-      display: flex;
-      justify-content: space-between;
-      font-weight: 500;
-    }
-
-    .airdrop-list li:last-child {
-      border-bottom: none;
-    }
-
-    .highlight {
-      color: var(--pink);
-      font-weight: 700;
-    }
+    .token-name img{width:60px;height:60px;margin-right:15px;border-radius:50%;}
 
     /* Footer */
-    footer {
-      background: var(--text);
-      color: white;
-      text-align: center;
-      padding: 3rem 0;
-      margin-top: 4rem;
+    footer{
+      background:linear-gradient(135deg,var(--text),#0F172A);color:#fff;
+      text-align:center;padding:4.5rem 0;margin-top:5rem;
     }
-
-    .social-links a {
-      color: white;
-      font-size: 1.5rem;
-      margin: 0 1rem;
-      transition: color 0.3s;
+    .footer-logo img{
+      width:80px;height:80px;border-radius:50%;margin-bottom:1rem;
+      border:3px solid #fff;
     }
-
-    .social-links a:hover {
-      color: var(--pink);
+    .social-links a{
+      color:#fff;font-size:2rem;margin:0 1.8rem;transition:.3s;
     }
+    .social-links a:hover{color:var(--pink);}
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2.2rem; }
-      .nav-links { display: none; }
-      .btn { width: 100%; text-align: center; margin-top: 1rem; }
+    @media(max-width:768px){
+      h1{font-size:2.5rem;}
+      .nav-links{display:none;}
+      .btn{width:100%;margin-top:1rem;}
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- 1. LOGO IN HEADER -->
   <header>
     <div class="container">
-      <div class="logo">$K</div>
+      <div class="logo">
+        <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Coin Logo">
+      </div>
       <h1>KIDS Coin</h1>
-      <p class="tagline">Crypto That Teaches Kids the Value of Money</p>
+      <p class="tagline">
+        The Fun Crypto That Teaches Kids Money, Savings, and Smart Investing – While Building Their Future!
+      </p>
     </div>
   </header>
 
-  <!-- Navigation -->
+  <!-- NAV -->
   <nav>
     <div class="container nav-container">
       <div></div>
       <div class="nav-links">
         <a href="#how">How It Works</a>
+        <a href="#ecosystem">Ecosystem</a>
         <a href="#seed">Seed Round</a>
-        <a href="#airdrop">Airdrop</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#faq">FAQ</a>
       </div>
       <a href="https://pump.fun" target="_blank" class="btn">Buy on Pump.fun</a>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- HERO -->
   <section id="hero">
-    <div class="container" style="text-align: center; padding: 3rem 0;">
-      <h2 class="section-title" style="font-size: 2.2rem;">A Crypto Piggy Bank for Your Child’s Future</h2>
-      <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem;">
-        KIDS Coin turns pocket money into real savings. Parents buy the token. Kids learn crypto. Everyone wins.
+    <div class="container" style="text-align:center;padding:3rem 0;">
+      <h2 class="section-title" style="font-size:2.8rem;">A Crypto Piggy Bank for Your Child’s Future</h2>
+      <p style="font-size:1.3rem;max-width:900px;margin:0 auto 2rem;color:#475569;">
+        KIDS Coin turns pocket money into real savings. Parents stake crypto. Kids learn finance. 50% in stablecoins = no scary drops.
       </p>
-      <a href="https://pump.fun" target="_blank" class="btn" style="font-size: 1.3rem; padding: 1rem 2.5rem;">Join the Seed Round Now</a>
+      <a href="https://pump.fun" target="_blank" class="btn" style="font-size:1.3rem;padding:1rem 2.5rem;">
+        Join Seed Round & Get Airdrop!
+      </a>
     </div>
   </section>
 
-  <!-- How It Works -->
+  <!-- HOW IT WORKS -->
   <section id="how">
     <div class="container">
       <h2 class="section-title">How KIDS Coin Works</h2>
       <div class="cards">
-        <div class="card">
-          <i class="fas fa-piggy-bank"></i>
-          <h3>Pocket Money</h3>
-          <p>Weekly crypto allowance paid automatically from staked funds.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-plane"></i>
-          <h3>Backpacking Fund</h3>
-          <p>Long-term savings for future travel adventures, locked until age 18.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-graduation-cap"></i>
-          <h3>Education & Fun</h3>
-          <p>Kids watch their money grow and learn real-world finance.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>50% in Stablecoins</h3>
-          <p>Half the fund stays safe in USDT/USDC. No scary drops.</p>
-        </div>
+        <div class="card"><i class="fas fa-piggy-bank"></i><h3>Pocket Money</h3><p>Weekly allowance from staked funds.</p></div>
+        <div class="card"><i class="fas fa-plane-departure"></i><h3>Backpacking Fund</h3><p>Locked until 18 – fund their first trip!</p></div>
+        <div class="card"><i class="fas fa-shield-alt"></i><h3>50% Stablecoins</h3><p>Half in USDT/USDC – safe & steady.</p></div>
+        <div class="card"><i class="fas fa-wallet"></i><h3>Savings Branch</h3><p>Medium-term lock with auto-compounding.</p></div>
+        <div class="card"><i class="fas fa-receipt"></i><h3>Subscriptions & Fees</h3><p>Monthly payouts for real-life costs.</p></div>
+        <div class="card"><i class="fas fa-hand-holding-usd"></i><h3>OAP Starter</h3><p>Ultra-long lock for retirement basics.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Seed Round Spotlight -->
+  <!-- ECOSYSTEM -->
+  <section id="ecosystem">
+    <div class="container ecosystem-details">
+      <h2 class="section-title">The KIDS Coin Ecosystem</h2>
+
+      <!-- 2. LOGO NEXT TO TOKEN NAME -->
+      <div class="token-name">
+        <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Logo">
+        <span>$KIDS – The Heart of the System</span>
+      </div>
+
+      <ul>
+        <li><i class="fas fa-coins"></i><div><strong>Main Token:</strong> 10% tax → liquidity, treasury, burn.</div></li>
+        <li><i class="fas fa-lock"></i><div><strong>Child Vaults:</strong> Stake BTC, ETH, BNB – auto 50% to stables.</div></li>
+        <li><i class="fas fa-chart-line"></i><div><strong>Funding Flow:</strong> Treasury distributes weekly/monthly.</div></li>
+        <li><i class="fas fa-graduation-cap"></i><div><strong>Educational Tools:</strong> Dashboards, badges, real-time charts.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SEED ROUND -->
   <section id="seed">
     <div class="container">
       <div class="seed-round">
-        <h2 class="section-title" style="color: var(--text); margin-bottom: 1rem;">Seed Round is LIVE on Pump.fun!</h2>
-        <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">
-          <strong>Every buyer becomes a Founding Family Member</strong> and gets <span class="highlight">FREE AIRDROPS</span> when we launch on BSC.
-        </p>
-        <div class="seed-badge">Limited Time Only</div>
-        
+        <h2 class="section-title" style="color:#fff;">Seed Round LIVE on Pump.fun!</h2>
+
+        <!-- 3. LOGO IN BADGE -->
+        <div class="seed-badge">
+          <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Logo">
+          Founding Family Member
+        </div>
+
         <div class="airdrop-list">
-          <h3 style="text-align: center; margin-bottom: 1rem; font-family: 'Fredoka One', cursive;">What You Get:</h3>
+          <h3 style="text-align:center;color:var(--text);">Airdrop Rewards</h3>
           <ul>
-            <li><span>Buy any amount</span> <span class="highlight">→ 1,000 KIDS + Founding NFT</span></li>
-            <li><span>Top 100 buyers</span> <span class="highlight">→ +10% bonus KIDS</span></li>
-            <li><span>Top 10 buyers</span> <span class="highlight">→ +25% bonus + Named Child Vault</span></li>
-            <li><span>All buyers</span> <span class="highlight">→ Share of 5% total supply (vested)</span></li>
+            <li><span>Any Purchase</span><span class="highlight">1,000 KIDS + Founding NFT</span></li>
+            <li><span>Top 100 Buyers</span><span class="highlight">+10% Bonus KIDS</span></li>
+            <li><span>Top 10 Buyers</span><span class="highlight">+25% Bonus + Named Child Vault</span></li>
+            <li><span>All Buyers</span><span class="highlight">5% Total Supply Share (vested 12 mo)</span></li>
           </ul>
         </div>
 
-        <p style="margin-top: 2rem; font-weight: 600;">
-          Snapshot taken when Pump.fun completes → Airdrop delivered automatically on BSC.
-        </p>
-
-        <a href="https://pump.fun" target="_blank" class="btn" style="margin-top: 1.5rem; font-size: 1.3rem;">Buy $KIDS on Pump.fun Now</a>
+        <a href="https://pump.fun" target="_blank"
+           class="btn" style="background:#fff;color:var(--text);">Buy $KIDS Now</a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 KIDS Coin. Built for families. Not financial advice.</p>
-      <div class="social-links" style="margin-top: 1rem;">
+
+      <!-- 4. LOGO IN FOOTER -->
+      <div class="footer-logo">
+        <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Coin">
+      </div>
+
+      <p>© 2025 KIDS Coin. Built for Families. DYOR – Not financial advice.</p>
+      <div class="social-links" style="margin-top:1.5rem;">
         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
         <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
