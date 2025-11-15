@@ -3,281 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KIDS Coin – Crypto for Kids, Built by Parents</title>
-  <meta name="description"
-        content="KIDS Coin teaches children the value of money through crypto. Buy on Pump.fun now and get airdrops + future savings vaults." />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@400;600;700&display=swap"
-        rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
+  <title>EIRE IFMC — Irish Financial Meme Centre</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --pink:#FF6B9D;--blue:#4D9CFF;--green:#34D399;--yellow:#FBBF24;
-      --purple:#A78BFA;--orange:#FB923C;--red:#EF4444;--bg:#F8FAFC;
-      --text:#1E293B;--card:#FFFFFF;--accent:#EDE9FE;
-    }
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
-    .container{max-width:1200px;margin:auto;padding:0 20px;}
-
-    /* Header */
-    header{
-      background:linear-gradient(135deg,var(--pink),var(--blue),var(--green));
-      color:#fff;padding:4rem 0;text-align:center;position:relative;overflow:hidden;
-    }
-    header::before{
-      content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="7" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="70" r="6" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-      animation:float 20s infinite linear;
-    }
-    @keyframes float{0%{transform:translate(0,0)}100%{transform:translate(100px,100px)}}
-    .logo{
-      width:160px;height:160px;border-radius:50%;border:6px solid #fff;
-      margin:0 auto 1.5rem;background:#fff;display:flex;align-items:center;
-      justify-content:center;box-shadow:0 15px 40px rgba(0,0,0,.25);
-      transition:transform .5s;
-    }
-    .logo:hover{transform:rotate(360deg);}
-    .logo img{width:100%;height:auto;border-radius:50%;}
-    h1{font-family:'Fredoka One',cursive;font-size:3.5rem;margin-bottom:.5rem;
-       text-shadow:2px 2px 6px rgba(0,0,0,.2);}
-    .tagline{font-size:1.5rem;opacity:.9;font-weight:600;max-width:900px;margin:auto;}
-
-    /* Nav */
-    nav{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:100;}
-    .nav-container{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;}
-    .nav-links a{margin-left:2rem;text-decoration:none;color:var(--text);font-weight:600;transition:.3s;}
-    .nav-links a:hover{color:var(--pink);}
-    .btn{
-      background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;
-      padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:700;
-      display:inline-block;transition:.3s;box-shadow:0 5px 20px rgba(255,107,157,.4);
-    }
-    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,157,.6);}
-
-    /* Sections */
-    section{padding:5rem 0;}
-    .section-title{
-      text-align:center;font-family:'Fredoka One',cursive;font-size:3rem;
-      margin-bottom:3rem;position:relative;
-    }
-    .section-title::after{
-      content:'';display:block;width:120px;height:6px;
-      background:linear-gradient(135deg,var(--pink),var(--blue));
-      margin:1rem auto 0;border-radius:6px;
-    }
-    .cards{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:2.5rem;margin-top:2rem;
-    }
-    .card{
-      background:var(--card);border-radius:25px;padding:2.5rem;text-align:center;
-      box-shadow:0 12px 35px rgba(0,0,0,.07);transition:.4s;border:3px solid transparent;
-    }
-    .card:hover{transform:translateY(-12px);border-color:var(--pink);
-                box-shadow:0 20px 50px rgba(0,0,0,.12);}
-    .card i{
-      font-size:4rem;margin-bottom:1.5rem;
-      background:linear-gradient(135deg,var(--pink),var(--blue));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    }
-    .card h3{font-family:'Fredoka One',cursive;font-size:1.8rem;margin-bottom:1rem;}
-    .card p{font-size:1.1rem;color:#475569;}
-
-    /* Seed Round */
-    .seed-round{
-      background:linear-gradient(135deg,var(--yellow),var(--orange),var(--red));
-      border-radius:35px;padding:4.5rem;text-align:center;margin:3rem 0;
-      position:relative;overflow:hidden;color:#fff;
-    }
-    .seed-round::before{
-      content:'SEED ROUND LIVE';position:absolute;top:25px;right:-60px;
-      background:var(--purple);color:#fff;padding:12px 80px;font-weight:bold;
-      transform:rotate(45deg);font-size:1.1rem;box-shadow:0 3px 15px rgba(0,0,0,.3);
-    }
-    .seed-badge{
-      display:inline-flex;align-items:center;background:var(--green);color:#fff;
-      padding:.8rem 2rem;border-radius:50px;font-weight:bold;margin:1.5rem 0;
-      font-size:1.3rem;
-    }
-    .seed-badge img{width:40px;height:40px;margin-right:10px;border-radius:50%;}
-    .airdrop-list{
-      text-align:left;max-width:750px;margin:3rem auto;
-      background:rgba(255,255,255,.95);padding:3rem;border-radius:30px;
-      box-shadow:0 20px 50px rgba(0,0,0,.2);
-    }
-    .airdrop-list li{
-      padding:1.2rem 0;border-bottom:1px dashed rgba(0,0,0,.2);
-      display:flex;justify-content:space-between;font-weight:500;font-size:1.15rem;
-    }
-    .airdrop-list li:last-child{border-bottom:none;}
-    .highlight{color:var(--yellow);font-weight:700;}
-
-    /* Ecosystem */
-    .ecosystem-details{
-      background:var(--accent);border-radius:35px;padding:4.5rem;margin:3rem 0;
-    }
-    .ecosystem-details ul{list-style:none;max-width:900px;margin:2.5rem auto;}
-    .ecosystem-details li{
-      background:#fff;padding:2rem;margin-bottom:2rem;border-radius:20px;
-      box-shadow:0 8px 25px rgba(0,0,0,.06);display:flex;align-items:center;
-    }
-    .ecosystem-details li i{font-size:2.5rem;margin-right:2rem;color:var(--blue);}
-    .ecosystem-details li strong{color:var(--pink);font-size:1.3rem;}
-    .token-name{
-      display:flex;align-items:center;justify-content:center;margin:2rem 0;
-      font-size:1.5rem;font-weight:700;
-    }
-    .token-name img{width:60px;height:60px;margin-right:15px;border-radius:50%;}
-
-    /* Footer */
-    footer{
-      background:linear-gradient(135deg,var(--text),#0F172A);color:#fff;
-      text-align:center;padding:4.5rem 0;margin-top:5rem;
-    }
-    .footer-logo img{
-      width:80px;height:80px;border-radius:50%;margin-bottom:1rem;
-      border:3px solid #fff;
-    }
-    .social-links a{
-      color:#fff;font-size:2rem;margin:0 1.8rem;transition:.3s;
-    }
-    .social-links a:hover{color:var(--pink);}
-
-    @media(max-width:768px){
-      h1{font-size:2.5rem;}
-      .nav-links{display:none;}
-      .btn{width:100%;margin-top:1rem;}
-    }
+    body { background: #0a0a0a; color: #e0e0e0; font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #0f0f0f, #1a1a1a); }
+    .btn-primary { background: #00ff88; color: #000; font-weight: 700; }
+    .btn-primary:hover { background: #00cc70; }
+    .card { background: #1a1a1a; border: 1px solid #333; }
+    .glow { text-shadow: 0 0 10px #00ff88; }
+    .inter { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body>
-
-  <!-- 1. LOGO IN HEADER -->
-  <header>
-    <div class="container">
-      <div class="logo">
-        <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Coin Logo">
-      </div>
-      <h1>KIDS Coin</h1>
-      <p class="tagline">
-        The Fun Crypto That Teaches Kids Money, Savings, and Smart Investing – While Building Their Future!
-      </p>
-    </div>
+<body class="gradient-bg min-h-screen">
+  <!-- HEADER -->
+  <header class="text-center py-12 px-4">
+    <h1 class="text-5xl md:text-7xl font-black glow">EIRE IFMC</h1>
+    <p class="text-xl md:text-2xl mt-2">Irish Financial Meme Centre</p>
+    <p class="mt-4 text-lg">Launch. Trade. Grow.</p>
   </header>
 
-  <!-- NAV -->
-  <nav>
-    <div class="container nav-container">
-      <div></div>
-      <div class="nav-links">
-        <a href="#how">How It Works</a>
-        <a href="#ecosystem">Ecosystem</a>
-        <a href="#seed">Seed Round</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <a href="https://pump.fun" target="_blank" class="btn">Buy on Pump.fun</a>
-    </div>
-  </nav>
-
   <!-- HERO -->
-  <section id="hero">
-    <div class="container" style="text-align:center;padding:3rem 0;">
-      <h2 class="section-title" style="font-size:2.8rem;">A Crypto Piggy Bank for Your Child’s Future</h2>
-      <p style="font-size:1.3rem;max-width:900px;margin:0 auto 2rem;color:#475569;">
-        KIDS Coin turns pocket money into real savings. Parents stake crypto. Kids learn finance. 50% in stablecoins = no scary drops.
-      </p>
-      <a href="https://pump.fun" target="_blank" class="btn" style="font-size:1.3rem;padding:1rem 2.5rem;">
-        Join Seed Round & Get Airdrop!
-      </a>
+  <section class="text-center py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold">1 EIRE = €1</h2>
+      <p class="mt-4 text-xl">Permanently Pegged. Irish-Backed.</p>
+      <button id="connectWallet" class="btn-primary px-10 py-4 mt-8 text-xl rounded-full">
+        CONNECT WALLET
+      </button>
+      <button id="launchBtn" class="btn-primary px-10 py-4 mt-4 text-xl rounded-full hidden">
+        LAUNCH MEME — €6.15
+      </button>
+    </div>
+  </section>
+
+  <!-- WHAT IS IFMC -->
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-10">What is IFMC?</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-[#00ff88]">Ireland’s Meme Hub</h3>
+        <p class="mt-2">The digital successor to the IFSC — powering the next generation of Irish memecoins.</p>
+      </div>
+      <div class="card p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-[#00ff88]">€1 Pegged Token</h3>
+        <p class="mt-2">Every launch adds liquidity. EIRE stays at €1. Forever.</p>
+      </div>
+      <div class="card p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-[#00ff88]">Creator Revenue</h3>
+        <p class="mt-2">€5.00 per launch goes directly to your wallet. Instantly.</p>
+      </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section id="how">
-    <div class="container">
-      <h2 class="section-title">How KIDS Coin Works</h2>
-      <div class="cards">
-        <div class="card"><i class="fas fa-piggy-bank"></i><h3>Pocket Money</h3><p>Weekly allowance from staked funds.</p></div>
-        <div class="card"><i class="fas fa-plane-departure"></i><h3>Backpacking Fund</h3><p>Locked until 18 – fund their first trip!</p></div>
-        <div class="card"><i class="fas fa-shield-alt"></i><h3>50% Stablecoins</h3><p>Half in USDT/USDC – safe & steady.</p></div>
-        <div class="card"><i class="fas fa-wallet"></i><h3>Savings Branch</h3><p>Medium-term lock with auto-compounding.</p></div>
-        <div class="card"><i class="fas fa-receipt"></i><h3>Subscriptions & Fees</h3><p>Monthly payouts for real-life costs.</p></div>
-        <div class="card"><i class="fas fa-hand-holding-usd"></i><h3>OAP Starter</h3><p>Ultra-long lock for retirement basics.</p></div>
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-10">How It Works</h2>
+    <div class="grid md:grid-cols-5 gap-4 text-center">
+      <div class="card p-4">
+        <div class="text-3xl font-bold text-[#00ff88]">1</div>
+        <p class="mt-2">Connect Wallet</p>
+      </div>
+      <div class="card p-4">
+        <div class="text-3xl font-bold text-[#00ff88]">2</div>
+        <p class="mt-2">Pay €6.15</p>
+      </div>
+      <div class="card p-4">
+        <div class="text-3xl font-bold text-[#00ff88]">3</div>
+        <p class="mt-2">€5.00 → You</p>
+      </div>
+      <div class="card p-4">
+        <div class="text-3xl font-bold text-[#00ff88]">4</div>
+        <p class="mt-2">€1.15 → EIRE LP</p>
+      </div>
+      <div class="card p-4">
+        <div class="text-3xl font-bold text-[#00ff88]">5</div>
+        <p class="mt-2">Meme Live</p>
       </div>
     </div>
   </section>
 
-  <!-- ECOSYSTEM -->
-  <section id="ecosystem">
-    <div class="container ecosystem-details">
-      <h2 class="section-title">The KIDS Coin Ecosystem</h2>
-
-      <!-- 2. LOGO NEXT TO TOKEN NAME -->
-      <div class="token-name">
-        <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Logo">
-        <span>$KIDS – The Heart of the System</span>
-      </div>
-
-      <ul>
-        <li><i class="fas fa-coins"></i><div><strong>Main Token:</strong> 5% tax → liquidity, treasury, burn.</div></li>
-        <li><i class="fas fa-lock"></i><div><strong>Child Vaults:</strong> Stake BTC, ETH, BNB – auto 50% to stables.</div></li>
-        <li><i class="fas fa-chart-line"></i><div><strong>Funding Flow:</strong> Treasury distributes weekly/monthly.</div></li>
-        <li><i class="fas fa-graduation-cap"></i><div><strong>Educational Tools:</strong> Dashboards, badges, real-time charts.</div></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- SEED ROUND -->
-  <section id="seed">
-    <div class="container">
-      <div class="seed-round">
-        <h2 class="section-title" style="color:#fff;">Seed Round LIVE on Pump.fun!</h2>
-
-        <!-- 3. LOGO IN BADGE -->
-        <div class="seed-badge">
-          <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Logo">
-          Founding Family Member
-        </div>
-
-        <div class="airdrop-list">
-          <h3 style="text-align:center;color:var(--text);">Airdrop Rewards</h3>
-          <ul>
-            <li><span>Any Purchase</span><span class="highlight">1,000 KIDS + Founding NFT</span></li>
-            <li><span>Top 100 Buyers</span><span class="highlight">+10% Bonus KIDS</span></li>
-            <li><span>Top 10 Buyers</span><span class="highlight">+25% Bonus + Named Child Vault</span></li>
-            <li><span>All Buyers</span><span class="highlight">5% Total Supply Share (vested 12 mo)</span></li>
-          </ul>
-        </div>
-
-        <a href="https://pump.fun" target="_blank"
-           class="btn" style="background:#fff;color:var(--text);">Buy $KIDS Now</a>
-      </div>
-    </div>
+  <!-- LIVE LAUNCHES -->
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-10">Live Launches</h2>
+    <div id="memes" class="grid md:grid-cols-4 gap-4"></div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="container">
-
-      <!-- 4. LOGO IN FOOTER -->
-      <div class="footer-logo">
-        <img src="https://raw.githubusercontent.com/MollieCarlos/eire-coin/main/logo.png" alt="KIDS Coin">
-      </div>
-
-      <p>© 2025 KIDS Coin. Built for Families. DYOR – Not financial advice.</p>
-        <div class="social-links" style="margin-top:1.5rem;">
-        <a href="https://x.com/KIDScoinComm" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://t.me/KIDScoinComm" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-      </div>
-    </div>
+  <footer class="text-center py-10 text-sm border-t border-gray-800 mt-20">
+    <p>EIRE IFMC • Dublin, Ireland • 2025</p>
+    <p class="mt-2">
+      <a href="https://github.com/yourname/eire-ifmc" class="underline">GitHub</a> • 
+      <a href="mailto:info@eire-ifmc.com" class="underline">Contact</a>
+    </p>
   </footer>
 
+  <!-- WALLET CONNECT (ALL WALLETS) -->
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+  <script>
+    const FACTORY = "0xYOUR_FACTORY_ADDRESS";
+    const ABI = [{"inputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"string","name":"metadataURI","type":"string"}],"name":"create","outputs":[],"stateMutability":"payable","type":"function"}];
+
+    let provider, signer, factory;
+
+    document.getElementById("connectWallet").onclick = async () => {
+      try {
+        // WalletConnect (Trust Wallet, etc.)
+        const wcProvider = new WalletConnectProvider.default({
+          rpc: { 56: "https://bsc-dataseed.binance.org/" }
+        });
+        await wcProvider.enable();
+        provider = new ethers.providers.Web3Provider(wcProvider);
+        
+        // Fallback to MetaMask
+        if (window.ethereum) {
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+        }
+
+        signer = provider.getSigner();
+        factory = new ethers.Contract(FACTORY, ABI, signer);
+        document.getElementById("connectWallet").classList.add("hidden");
+        document.getElementById("launchBtn").classList.remove("hidden");
+      } catch (e) { alert("Wallet connection failed"); }
+    };
+
+    document.getElementById("launchBtn").onclick = async () => {
+      const name = prompt("Token Name:");
+      const symbol = prompt("Symbol:");
+      if (!name || !symbol) return;
+      const tx = await factory.create(name, symbol, "", { value: ethers.utils.parseEther("0.003236") });
+      alert("Launching... Tx: " + tx.hash);
+    };
+
+    // Load Memes
+    async function loadMemes() {
+      try {
+        const prov = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+        const fact = new ethers.Contract(FACTORY, ABI, prov);
+        const events = await fact.queryFilter(fact.filters.MemeLaunched());
+        const list = document.getElementById("memes");
+        list.innerHTML = "";
+        for (let e of events.slice(-12)) {
+          list.innerHTML += `
+            <div class="card p-4 rounded-lg text-center">
+              <p class="font-bold">${e.args.name || "Meme"}</p>
+              <p class="text-sm text-gray-400">(${e.args.symbol || "SYM"})</p>
+              <p class="text-xs mt-1">by ${e.args.creator.slice(0,6)}...${e.args.creator.slice(-4)}</p>
+            </div>`;
+        }
+      } catch (e) {}
+    }
+    setInterval(loadMemes, 10000);
+    loadMemes();
+  </script>
 </body>
 </html>
